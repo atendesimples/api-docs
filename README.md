@@ -26,4 +26,4 @@ Para acesso offline, instale o Ruby 2.2.2 e siga as seguintes instruções:
 
 1. Acesse a documentação no seu browser via [http://localhost:4567/](http://localhost:4567/)
 
-Para mais informações, consultar a documentação do [Slate](https://github.com/tripit/slate).
+Para mais informações, consultar a documentação do [Slate](https://github.com/tripit/slate) e do [Middleman GH-Pages](https://github.com/neo/middleman-gh-pages).

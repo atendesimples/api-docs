@@ -11,4 +11,4 @@ Os eventos possíveis que podem ser registrados pelo Atende Simples são:
        Código        |        Descrição
 ---------------------|------------------------------------
 call.finished        | Toda vez que uma chamada é finalizada.
-call.audio_processed | Toda vez que o áudio da chamada termina de ser processado.
+call.audio_available | Toda vez que o áudio da chamada termina de ser processado.

@@ -12,7 +12,6 @@ toc_footers:
 
 includes:
   - webhooks
-  - errors
 
 search: true
 ---

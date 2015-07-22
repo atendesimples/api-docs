@@ -1,20 +1,33 @@
 # Webhooks
 
+Webhooks são procedimentos [configurados na sua conta Atende Simples](http://app.atendesimples.com/webhooks) para disparar notificações (requisições HTTP POST) para sistemas externos sempre que ocorrer algum evento no Atende Simples.
+
+Um **evento** é um *ação* que acontece com um determinado **recurso**, por exemplo, quando uma ***chamada*** é ***atendida***. Ao receber uma notificação, o seu site ou aplicação poderá executar diversas tarefas, de acordo com a necessidade da integração.
+
+\* *Webhooks também são chamados de* ***Callbacks*** *ou* ***Reverse API***.
+
 ## Eventos
 
-Alguns eventos que ocorrem no Atende Simples são registrados internamente. Cada vez que isso acontece, uma notificação é emitida para os webhooks ativos e configurados para serem notificados sobre esse evento. Para ver os seus eventos registrados, acesse o [Log de eventos](http://app.atendesimples.com/webhook/event_logs) da sua conta.
-
-Os códigos dos eventos seguem um padrão `resource.event`, onde `resource` é o nome do recurso que gerou o evento e `event` é o nome do evento ocorrido.
-
-Os eventos possíveis que podem ser registrados pelo Atende Simples são:
+Todo evento possui um código que identifica o seu tipo. Esses códigos são formatados no padrão `resource.event`, sendo `resource` o nome do recurso e `event` o nome do evento disparado. Na tabela abaixo estão listados todos os tipos de eventos existentes no Atende Simples:
 
        Código        |        Descrição
----------------------|------------------------------------
-call.newcall         | Toda vez que uma chamada nova é iniciada.
-call.finished        | Toda vez que uma chamada é finalizada.
-call.audio_available | Toda vez que o áudio da chamada termina de ser processado.
+---------------------|-----------------------------------------------
+call.newcall         | Quando uma chamada nova é iniciada.
+call.b_leg_answered  | Quando uma chamada é atendida pela ponta B.
+call.finished        | Quando uma chamada é finalizada.
+call.audio_available | Quando o áudio de uma chamada fica disponível para dar play.
+call.call_tag        | Quando uma chamada é classificada pela ponta B.
+
+Ao criar um webhook, você seleciona quais desses eventos ele escutará. Somente os eventos selecionados farão com que o webhook dispare notificações.
+
+**Nota:** Independentemente de existir webhooks configurados ou não, o Atende Simples registra todos os eventos internamente e os disponibiliza no [Log de eventos](http://app.atendesimples.com/webhook/event_logs), por tempo limitado.
+
 
 ## Payloads
+
+<blockquote>
+  <strong>Exemplos de payloads:</strong>
+</blockquote>
 
 > Payload do evento ***ping***:
 
@@ -97,12 +110,15 @@ call.audio_available | Toda vez que o áudio da chamada termina de ser processad
 }
 ```
 
-O payload é o conteúdo enviado numa notificação disparada pelo webhook. Sua estrutura é composta pelos campos:
+As notificações enviadas pelos webhooks possuem um conjunto de informações chamado de **payload**, que contém dados do recurso (naquele determinado momento) e dados do próprio evento. Essas informações são estruturadas nos seguintes campos:
 
            |                          |
 -----------|--------------------------|
-event_code | Código do evento que originou a notificação, geralmente no padrão `resource.event`
-webhook    | Informações do webhook para o qual a notificação foi disparada
-object     | Informações do recurso relacionado ao evento
-changes    | Mudanças realizadas no recurso (somente quando o evento for `*.updated`)
+event_code | Código do evento que originou a notificação, seguindo o padrão `resource.event`.
+webhook    | Dados do webhook que disparou a notificação.
+object     | Dados do recurso relacionado ao evento, no momento em que o evento ocorreu.
+changes    | Mudanças realizadas no recurso (presente somente quando `event` for `updated`).
+
+Na coluna do lado direito, veja exemplos de payloads para todos os tipos de evento.
+
 

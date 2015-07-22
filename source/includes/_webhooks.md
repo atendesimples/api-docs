@@ -1,14 +1,16 @@
 # Webhooks
 
-Webhooks são procedimentos [configurados na sua conta Atende Simples](http://app.atendesimples.com/webhooks) para disparar notificações (requisições HTTP POST) para sistemas externos sempre que ocorrer algum evento no Atende Simples.
+Webhooks são integrações [configuradas na sua conta](http://app.atendesimples.com/webhooks) que escutarão a certos eventos do Atende Simples. Quando um evento ocorrer, o Atende Simples enviará uma notificação (requisição HTTP POST) para a URL configurada no webhook.
 
-Um **evento** é um *ação* que acontece com um determinado **recurso**, por exemplo, quando uma ***chamada*** é ***atendida***. Ao receber uma notificação, o seu site ou aplicação poderá executar diversas tarefas, de acordo com a necessidade da integração.
+Dependendo da necessidade da sua integração, os webhooks podem ser usados para atualizar um sistema de tickets externo, gerar um relatório no seu sistema ou executar tarefas diversas.
 
-\* *Webhooks também são chamados de* ***Callbacks*** *ou* ***Reverse API***.
+\* *Webhooks também são conhecidos como* ***Callbacks*** *ou* ***Reverse API***.
 
 ## Eventos
 
-Todo evento possui um código que identifica o seu tipo. Esses códigos são formatados no padrão `resource.event`, sendo `resource` o nome do recurso e `event` o nome do evento disparado. Na tabela abaixo estão listados todos os tipos de eventos existentes no Atende Simples:
+Um **evento** é um *ação* que acontece com um determinado **recurso** do Atende Simples. Por exemplo, um evento ocorre quando uma ***chamada*** é ***atendida***.
+
+Todo evento possui um código que identifica o seu tipo. Esses códigos são formatados no padrão `resource.event`, sendo `resource` o nome do recurso e `event` o nome do evento disparado. Na tabela abaixo estão listados todos os tipos de eventos do Atende Simples:
 
        Código        |        Descrição
 ---------------------|-----------------------------------------------
@@ -18,10 +20,25 @@ call.finished        | Quando uma chamada é finalizada.
 call.audio_available | Quando o áudio de uma chamada fica disponível para dar play.
 call.call_tag        | Quando uma chamada é classificada pela ponta B.
 
-Ao criar um webhook, você seleciona quais desses eventos ele escutará. Somente os eventos selecionados farão com que o webhook dispare notificações.
+Ao configurar um webhook, você seleciona quais desses eventos ele escutará. Marcar somente os eventos específicos que você precisa tratar pode ajudar a limitar a quantidade de requisições HTTP que a sua aplicação receberá. Somente os eventos selecionados farão com que o webhook dispare notificações.
 
-**Nota:** Independentemente de existir webhooks configurados ou não, o Atende Simples registra todos os eventos internamente e os disponibiliza no [Log de eventos](http://app.atendesimples.com/webhook/event_logs), por tempo limitado.
+**Nota:** Independentemente de existir webhooks configurados ou não, o Atende Simples registra todos os eventos internamente (menos o [ping](#evento-ping)) e os disponibiliza no [Log de eventos](http://app.atendesimples.com/webhook/event_logs), por tempo limitado.
 
+
+### Evento Ping
+
+O evento ping é um evento especial disparado para testar se a URL do webhook está funcionando. Quando um webhook é criado, é necessário fazer a ativação do mesmo através do botão "Enviar ping", que dispara um evento ping.
+
+Esse evento não é registrado no log de eventos.
+
+### Eventos Coringa (Wildcard)
+
+Eventos coringa (wildcard) não são eventos que acontecem no Atende Simples, são apenas representações de um conjunto de eventos que um webhook deve escutar. Os eventos coringa disponíveis são:
+
+       Código        |        Descrição
+---------------------|-----------------------------------------------
+\*                   | Todos os eventos do Atende Simples, inclusive os que ainda surgirão.
+call.*               | Todos os eventos do recurso `call` (chamada), inclusive os que ainda surgirão.
 
 ## Payloads
 
@@ -119,6 +136,4 @@ webhook    | Dados do webhook que disparou a notificação.
 object     | Dados do recurso relacionado ao evento, no momento em que o evento ocorreu.
 changes    | Mudanças realizadas no recurso (presente somente quando `event` for `updated`).
 
-Na coluna do lado direito, veja exemplos de payloads para todos os tipos de evento.
-
-
+Veja exemplos de payloads para todos os tipos de evento na coluna ao lado.

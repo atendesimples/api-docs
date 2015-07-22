@@ -16,17 +16,7 @@ call.audio_available | Toda vez que o áudio da chamada termina de ser processad
 
 ## Payloads
 
-O payload é o conteúdo enviado numa notificação disparada pelo webhook. Sua estrutura é composta pelos campos:
-
-           |                          |
------------|--------------------------|
-event_code | Código do evento que originou a notificação, geralmente no padrão `resource.event`
-webhook    | Informações do webhook para o qual a notificação foi disparada
-object     | Informações do recurso relacionado ao evento
-changes    | Mudanças realizadas no recurso (somente quando o evento for `*.updated`)
-
-
-## ping
+> Payload do evento ***ping***:
 
 ```json
 {
@@ -38,7 +28,7 @@ changes    | Mudanças realizadas no recurso (somente quando o evento for `*.upd
 }
 ```
 
-## call.*
+> Payload dos eventos ***call.\****:
 
 ```json
 {
@@ -106,3 +96,13 @@ changes    | Mudanças realizadas no recurso (somente quando o evento for `*.upd
   }
 }
 ```
+
+O payload é o conteúdo enviado numa notificação disparada pelo webhook. Sua estrutura é composta pelos campos:
+
+           |                          |
+-----------|--------------------------|
+event_code | Código do evento que originou a notificação, geralmente no padrão `resource.event`
+webhook    | Informações do webhook para o qual a notificação foi disparada
+object     | Informações do recurso relacionado ao evento
+changes    | Mudanças realizadas no recurso (somente quando o evento for `*.updated`)
+

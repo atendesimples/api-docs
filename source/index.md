@@ -1,18 +1,12 @@
 ---
 title: API do Atende Simples
 
-language_tabs:
-  - shell
-  - ruby
-  - python
-
 toc_footers:
   - <a href='mailto:equipe@atendesimples.com'>equipe@atendesimples.com</a>
   - <a href='tel:08008871565'>0800 887 1565</a>
   - <a href="http://atendesimples.com">© 2012 — 2015 Atende Simples</a>
 
 includes:
-  - authentication
   - webhooks
 
 search: true

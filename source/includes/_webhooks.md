@@ -15,8 +15,8 @@ As requisições realizadas para as URLs configuradas nos webhooks contém os se
 
     Cabeçalho               |        Descrição
 ----------------------------|-----------------------------------------------
-X-AtendeSimples-Event       | [Código do evento]() que gerou a notificação.
-X-AtendeSimples-Request-Id  | ID único da notificação, no formato [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+X-AtendeSimples-Event       | [Código do evento](#eventos) que gerou a notificação.
+X-AtendeSimples-Request-Id  | ID único da notificação/requisição, no formato [UUID][uuid].
 X-AtendeSimples-Environment | Ambiente de onde a notificação foi disparada (`production` ou `staging`).
 X-Hub-Signature             | Assinatura de segurança, para a sua aplicação verificar a autenticidade da requisição.
 User-Agent                  | `AtendeSimples-Robot` + o ambiente que originou a notificação.
@@ -36,7 +36,7 @@ call.call_tag        | Quando uma chamada é classificada pela ponta B.
 
 Ao configurar um webhook, você seleciona quais desses eventos ele escutará. Marcar somente os eventos específicos que você precisa tratar pode ajudar a limitar a quantidade de requisições HTTP que a sua aplicação receberá. Somente os eventos selecionados farão com que o webhook dispare notificações.
 
-**Nota:** Independentemente de existir webhooks configurados ou não, o Atende Simples registra todos os eventos internamente (menos o [ping](#evento-ping)) e os disponibiliza no [Log de eventos](http://app.atendesimples.com/webhook/event_logs), por tempo limitado.
+**Nota:** Independentemente de existir webhooks configurados ou não, o Atende Simples registra todos os eventos internamente (menos o [ping](#evento-ping)) e os disponibiliza no [Log de eventos][log_eventos], por tempo limitado.
 
 
 ### Evento Ping
@@ -151,3 +151,6 @@ object     | Dados do recurso relacionado ao evento, no momento em que o evento 
 changes    | Mudanças realizadas no recurso (presente somente quando `event` for `updated`).
 
 Veja exemplos de payloads para todos os tipos de evento na coluna ao lado.
+
+[uuid]: https://en.wikipedia.org/wiki/Universally_unique_identifier
+[log_eventos]: http://app.atendesimples.com/webhook/event_logs

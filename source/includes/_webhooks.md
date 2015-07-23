@@ -2,13 +2,27 @@
 
 Webhooks são integrações [configuradas na sua conta](http://app.atendesimples.com/webhooks) que escutarão a certos eventos do Atende Simples. Quando um evento ocorrer, o Atende Simples enviará uma notificação (requisição HTTP POST) para a URL configurada no webhook.
 
-Dependendo da necessidade da sua integração, os webhooks podem ser usados para atualizar um sistema de tickets externo, gerar um relatório no seu sistema ou executar tarefas diversas.
+Um **evento** é um *ação* que acontece com um determinado **recurso** do Atende Simples. Por exemplo, um evento ocorre quando uma ***chamada*** é ***atendida***.
+
+Dependendo da necessidade da sua integração, os webhooks podem ser úteis para atualizar um sistema de tickets externo, gerar um relatório no seu sistema ou executar tarefas diversas.
+
 
 \* *Webhooks também são conhecidos como* ***Callbacks*** *ou* ***Reverse API***.
 
-## Eventos
+## Cabeçalhos HTTP
 
-Um **evento** é um *ação* que acontece com um determinado **recurso** do Atende Simples. Por exemplo, um evento ocorre quando uma ***chamada*** é ***atendida***.
+As requisições realizadas para as URLs configuradas nos webhooks contém os seguintes cabeçalhos:
+
+    Cabeçalho               |        Descrição
+----------------------------|-----------------------------------------------
+X-AtendeSimples-Event       | [Código do evento]() que gerou a notificação.
+X-AtendeSimples-Request-Id  | ID único da notificação, no formato [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+X-AtendeSimples-Environment | Ambiente de onde a notificação foi disparada (`production` ou `staging`).
+X-Hub-Signature             | Assinatura de segurança, para a sua aplicação verificar a autenticidade da requisição.
+User-Agent                  | `AtendeSimples-Robot` + o ambiente que originou a notificação.
+Content-Type                | Formato do [payload](#payloads), de acordo com o que for configurado no webhook. Os formatos disponíveis são `application/json` e `application/x-www-form-urlencoded`.
+
+## Eventos
 
 Todo evento possui um código que identifica o seu tipo. Esses códigos são formatados no padrão `resource.event`, sendo `resource` o nome do recurso e `event` o nome do evento disparado. Na tabela abaixo estão listados todos os tipos de eventos do Atende Simples:
 

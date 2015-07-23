@@ -9,7 +9,31 @@ Dependendo da necessidade da sua integração, os webhooks podem ser úteis para
 
 \* *Webhooks também são conhecidos como* ***Callbacks*** *ou* ***Reverse API***.
 
-## Cabeçalhos HTTP
+## Requisição
+
+<blockquote>
+  <strong>Exemplo de requisição:</strong>
+</blockquote>
+
+```
+POST /1d4c5sf1 HTTP/1.1
+
+Host: requestb.in
+User-Agent: AtendeSimples-Robot (staging)
+Content-Type: application/json
+X-Hub-Signature: sha1=5780ee6915fcc2d2e6a847d9c9e48f9ebe0159e7
+X-AtendeSimples-Event: ping
+X-AtendeSimples-Request-Id: c11366b2-813e-499c-a673-cbf03c17eed5
+X-AtendeSimples-Environment: staging
+
+{
+  "event_code": "ping",
+  "webhook": {
+    "id": 1,
+    "url": "http://requestb.in/1d4c5sf1"
+  }
+}
+```
 
 As requisições realizadas para as URLs configuradas nos webhooks contém os seguintes cabeçalhos:
 

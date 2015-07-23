@@ -40,7 +40,7 @@ As requisições realizadas para as URLs configuradas nos webhooks contém os se
     Cabeçalho               |        Descrição
 ----------------------------|-----------------------------------------------
 X-AtendeSimples-Event       | [Código do evento](#eventos) que gerou a notificação.
-X-AtendeSimples-Request-Id  | ID único da notificação/requisição, no formato [UUID][uuid].
+X-AtendeSimples-Request-Id  | Código identificador da notificação/requisição, no formato [UUID][uuid].
 X-AtendeSimples-Environment | Ambiente de onde a notificação foi disparada (`production` ou `staging`).
 X-Hub-Signature             | Assinatura de segurança, para a sua aplicação verificar a autenticidade da requisição.
 User-Agent                  | `AtendeSimples-Robot` + o ambiente que originou a notificação.
@@ -100,68 +100,61 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
 
 ```json
 {
-  "event_code": "call.finished",
-  "webhook": {
-    "id": 1,
-    "url": "http://seu-site.com/callbacks/atendesimples"
-  },
-  "object": {
-    "call_id": 1003,
-    "from_number": "552122334466",
-    "dnis": "5",
-    "call_started_at": "2011-01-01T01:11:00.000-02:00",
-    "status": "answered",
-    "status_details": "conference",
-    "business_hours": "worktime",
-    "inbound_amount": "10.0",
-    "total_amount": "15.0",
-    "billed_duration": 900,
-    "inbound_duration": 900,
-    "selected_options": [
-      "1",
-      "3",
-      "2"
-    ],
-    "call_tags": [
-      {
-        "code": "70",
-        "description": "Lead",
-        "status": "200"
-      },
-      {
-        "code": " 71",
-        "description": "Follow up",
-        "status": "0"
-      }
-    ],
-    "audio_url": "http://s3.amazon.com/123456/audio.mp3",
-    "outbound_calls": [
-      {
-        "started_at": "2011-01-01T01:11:00.000-02:00",
-        "phone_number": "5511999999999",
-        "name": "João",
-        "extension": 22,
-        "duration": 64,
-        "amount": "17.28"
-      },
-      {
-        "started_at": "2011-01-01T01:11:00.000-02:00",
-        "phone_number": "5531999999999",
-        "name": "Patricia",
-        "extension": 23,
-        "duration": 10,
-        "amount": "2.7"
-      },
-      {
-        "started_at": "2011-01-01T01:11:00.000-02:00",
-        "phone_number": "123456",
-        "name": "Fernando",
-        "extension": 21,
-        "duration": 10,
-        "amount": "2.7"
-      }
-    ]
-  }
+  "id": 1003,
+  "from_number": "552122334466",
+  "dnis": "5",
+  "call_started_at": "2011-01-01T01:11:00.000-02:00",
+  "status": "answered",
+  "status_details": "conference",
+  "business_hours": "worktime",
+  "inbound_amount": "10.0",
+  "total_amount": "15.0",
+  "billed_duration": 900,
+  "inbound_duration": 900,
+  "selected_options": [
+    "1",
+    "3",
+    "2"
+  ],
+  "call_tags": [
+    {
+      "code": "70",
+      "description": "Lead",
+      "status": "200"
+    },
+    {
+      "code": " 71",
+      "description": "Follow up",
+      "status": "0"
+    }
+  ],
+  "audio_url": "https://app.atendesimples.com/public/audios/98b2ec022a7f051a84e65b",
+  "outbound_calls": [
+    {
+      "started_at": "2011-01-01T01:11:00.000-02:00",
+      "phone_number": "123456",
+      "name": "Jane Doe",
+      "extension": 22,
+      "duration": 5,
+      "amount": "27.0"
+    },
+    {
+      "started_at": "2011-01-01T01:11:00.000-02:00",
+      "phone_number": "123456",
+      "name": "Jane Doe",
+      "extension": 22,
+      "duration": 5,
+      "amount": "27.0"
+    },
+    {
+      "started_at": "2011-01-01T01:11:00.000-02:00",
+      "phone_number": "123456",
+      "name": "Jane Doe",
+      "extension": 22,
+      "duration": 5,
+      "amount": "27.0"
+    }
+  ]
 }
 ```
 
@@ -175,6 +168,34 @@ object     | Dados do recurso relacionado ao evento, no momento em que o evento 
 changes    | Mudanças realizadas no recurso (presente somente quando `event` for `updated`).
 
 Veja exemplos de payloads para todos os tipos de evento na coluna ao lado.
+
+### Call
+
+    Campo              |  Tipo   |  Descrição
+-----------------------|---------|-----------------------------------------------
+id                     | Integer | Código identificador da chamada.
+from_number            | String  | Número do telefone de quem ligou para o seu atendimento (ponta A), no formato `código do país` + `DDD` + `telefone`. Exemplo: `"552130409670"`.
+dnis                   | String  | Número do seu atendimento, no formato `código do país` + `número`. Exemplo: `"5508008871565"`.
+call_started_at        | DateTime| Data e hora do início da chamada, com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2015-05-07 16:26:05 -0300"`.
+status                 | String  | Status da chamada no momento do evento. Os status possíveis são: `newcall`, `in_progress`, `abandoned`, `answered`, `blocked`, `handled` e `missed`.
+status_details         | String  | Complemento do status. Pode vir com o nome do atendente que atendeu a ligação, uma mensagem personalizada ou a mensagem `"Desligada"`.
+business_hours         | String  | Identifica se a chamada ocorreu dentro ou fora do horário de atendimento ou fora do horário configurado. Os valores possíveis são: `worktime` e `out_of_worktime`.
+inbound_amount         | Float   | Valor cobrado referente a chamada recebida (entrante).
+total_amount           | Float   | Valor total cobrado pela chamada (incluindo a chamada recebida e os reencaminhamentos).
+billed_duration        | Integer | Duração arredondada da chamada (em segundos) considerada para cobrança.
+inbound_duration       | Integer | Duração real da chamada em segundos, sem arredondamento.
+selected_options       | Array   | Opções do menu digitadas por quem ligou, respectivamente. Se o atendimento for automático, ou seja, sem menu de opções, o valor retornado será sempre `"1"`. Dependendo da configuração do atendimento, é possível digitar mais de uma opção. Exemplo: `["1", "3"]`.
+call_tags              | Array   | Classificações da chamada registradas por quem atendeu a ligação. Exemplo: `[{"code": "70", "description": "Lead"}]`.
+call_tags &#65515; code       | String  | Código que o atendente digitou para efetuar a classificação.
+call_tags &#65515; description| String  | Descrição referente ao código digitado na classificação.
+audio_url              | String  | Link para o arquivo com a gravação da conversa ou áudio da caixa postal. Exemplo: `"https://app.atendesimples.com/public/audios/98b2ec022a7f051a84e65b"`.
+outbound_calls         | Array   | Informações referente aos reencaminhamentos da chamada (pode haver mais de um). Só serão apresentados os reencaminhamentos que forem atendidos.
+outbound_calls &#65515; started_at   | DateTime | Data e hora do reencaminhamento, com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2011-05-07 17:26:05 -0300"`.
+outbound_calls &#65515; phone_number | String   | Número do telefone que atendeu o reencaminhamento. Exemplo: `"5511999999999"`.
+outbound_calls &#65515; name         | String   | Nome do atendente que atendeu o reencaminhamento. Exemplo: `"João"`.
+outbound_calls &#65515; extension    | Integer  | Ramal do atendente que atendeu o reencaminhamento. Exemplo: `22`.
+outbound_calls &#65515; duration     | Integer  | Duração em segundos do reencaminhamento.
+outbound_calls &#65515; amount       | Float    | Valor cobrado pelo reencaminhamento. Exemplo: `17.28`.
 
 [uuid]: https://en.wikipedia.org/wiki/Universally_unique_identifier
 [log_eventos]: http://app.atendesimples.com/webhook/event_logs

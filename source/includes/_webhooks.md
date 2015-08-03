@@ -60,7 +60,7 @@ call.call_tag        | Quando uma chamada é classificada pela ponta B.
 
 Ao configurar um webhook, você seleciona quais desses eventos ele escutará. Marcar somente os eventos específicos que você precisa tratar pode ajudar a limitar a quantidade de requisições HTTP que a sua aplicação receberá. Somente os eventos selecionados farão com que o webhook dispare notificações.
 
-**Nota:** Independentemente de existir webhooks configurados ou não, o Atende Simples registra todos os eventos internamente (menos o [ping](#evento-ping)) e os disponibiliza no [Log de eventos][log_eventos], por tempo limitado.
+**Nota:** Independentemente de existir webhooks configurados ou não, o Atende Simples registra todos os eventos internamente (com exceção do [ping](#evento-ping)) e os disponibiliza no [Log de eventos][log_eventos] por um tempo limitado.
 
 
 ### Evento Ping
@@ -71,7 +71,7 @@ Esse evento não é registrado no log de eventos.
 
 ### Eventos Coringa (Wildcard)
 
-Eventos coringa (wildcard) não são eventos que acontecem no Atende Simples, são apenas representações de um conjunto de eventos que um webhook deve escutar. Os eventos coringa disponíveis são:
+Eventos coringa (wildcard) não são eventos que acontecem no Atende Simples, são apenas representações de um conjunto de eventos que um webhook pode escutar. Os eventos coringa disponíveis são:
 
        Código        |        Descrição
 ---------------------|-----------------------------------------------
@@ -158,13 +158,13 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
 }
 ```
 
-As notificações enviadas pelos webhooks possuem um conjunto de informações chamado de **payload**, que contém dados do recurso (naquele determinado momento) e dados do próprio evento. Essas informações são estruturadas nos seguintes campos:
+As notificações enviadas pelos webhooks possuem um conjunto de informações chamado de **payload**, que contém dados do recurso (do momento que o evento ocorre) e dados do próprio evento. Essas informações são estruturadas nos seguintes campos:
 
            |                          |
 -----------|--------------------------|
 event_code | Código do evento que originou a notificação, seguindo o padrão `resource.event`.
 webhook    | Dados do webhook que disparou a notificação.
-object     | Dados do recurso relacionado ao evento, no momento em que o evento ocorreu.
+object     | Dados do recurso relacionado ao evento, no momento em que ele ocorreu.
 changes    | Mudanças realizadas no recurso (presente somente quando `event` for `updated`).
 
 Veja exemplos de payloads para todos os tipos de evento na coluna ao lado.
@@ -178,13 +178,13 @@ from_number            | String  | Número do telefone de quem ligou para o seu 
 dnis                   | String  | Número do seu atendimento, no formato `código do país` + `número`. Exemplo: `"5508008871565"`.
 call_started_at        | DateTime| Data e hora do início da chamada, com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2015-05-07 16:26:05 -0300"`.
 status                 | String  | Status da chamada no momento do evento. Os status possíveis são: `newcall`, `in_progress`, `abandoned`, `answered`, `blocked`, `handled` e `missed`.
-status_details         | String  | Complemento do status. Pode vir com o nome do atendente que atendeu a ligação, uma mensagem personalizada ou a mensagem `"Desligada"`.
-business_hours         | String  | Identifica se a chamada ocorreu dentro ou fora do horário de atendimento ou fora do horário configurado. Os valores possíveis são: `worktime` e `out_of_worktime`.
+status_details         | String  | Complemento do status. Pode vir com o nome do atendente que atendeu a ligação, uma mensagem personalizada ou com a mensagem `"Desligada"`.
+business_hours         | String  | Identifica se a chamada ocorreu dentro ou fora do horário de atendimento configurado. Os valores possíveis são: `worktime` e `out_of_worktime`.
 inbound_amount         | Float   | Valor cobrado referente a chamada recebida (entrante).
 total_amount           | Float   | Valor total cobrado pela chamada (incluindo a chamada recebida e os reencaminhamentos).
 billed_duration        | Integer | Duração arredondada da chamada (em segundos) considerada para cobrança.
-inbound_duration       | Integer | Duração real da chamada em segundos, sem arredondamento.
-selected_options       | Array   | Opções do menu digitadas por quem ligou, respectivamente. Se o atendimento for automático, ou seja, sem menu de opções, o valor retornado será sempre `"1"`. Dependendo da configuração do atendimento, é possível digitar mais de uma opção. Exemplo: `["1", "3"]`.
+inbound_duration       | Integer | Duração real da chamada (em segundos), sem arredondamento.
+selected_options       | Array   | Opções do menu digitadas por quem ligou, na ordem em que forem digitadas. Se o atendimento for automático, ou seja, sem menu de opções, o valor retornado será sempre `"1"`. Dependendo da configuração do atendimento, é possível digitar mais de uma opção. Exemplo: `["1", "3"]`.
 call_tags              | Array   | Classificações da chamada registradas por quem atendeu a ligação. Exemplo: `[{"code": "70", "description": "Lead"}]`.
 call_tags &#65515; code       | String  | Código que o atendente digitou para efetuar a classificação.
 call_tags &#65515; description| String  | Descrição referente ao código digitado na classificação.

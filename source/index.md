@@ -1,6 +1,10 @@
 ---
 title: API do Atende Simples
 
+language_tabs:
+- ruby
+- shell
+
 toc_footers:
   - <a href='mailto:equipe@atendesimples.com'>equipe@atendesimples.com</a>
   - <a href='tel:08008871565'>0800 887 1565</a>

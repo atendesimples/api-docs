@@ -42,9 +42,34 @@ As requisições realizadas para as URLs configuradas nos webhooks contém os se
 X-AtendeSimples-Event       | [Código do evento](#eventos) que gerou a notificação.
 X-AtendeSimples-Request-Id  | Código identificador da notificação/requisição, no formato [UUID][uuid].
 X-AtendeSimples-Environment | Ambiente de onde a notificação foi disparada (`production` ou `staging`).
-X-Hub-Signature             | Assinatura de segurança, para a sua aplicação verificar a autenticidade da requisição.
+X-Hub-Signature             | Assinatura de segurança, para a sua aplicação verificar a autenticidade da requisição. O valor desse header é computado com o HMAC hex digest do corpo da requisição, usando o algoritmo sha1 com a chave secreta do webhook (disponível na página do webhook) como chave de criptografia (ver exemplo ao lado).
 User-Agent                  | `AtendeSimples-Robot` + o ambiente que originou a notificação.
 Content-Type                | Formato do [payload](#payloads), de acordo com o que for configurado no webhook. Os formatos disponíveis são `application/json` e `application/x-www-form-urlencoded`.
+
+> Exemplo de como gerar o X-Hub-Signature:
+
+```ruby
+# Chave secreta do webhook
+key = '31f439e8b93520776732ad97e129700d9d1020ed'
+
+# Corpo da requisição
+body = '{"event_code":"call.finished","object":{"id":"123123"}}'
+
+digest = OpenSSL::Digest.new('sha1')
+OpenSSL::HMAC.hexdigest(digest, key, body)
+=> 'c7fb37d21fc3a868e346eca1d89af5ce15f83317'
+```
+
+```sh
+# Chave secreta do webhook
+$ key='31f439e8b93520776732ad97e129700d9d1020ed'
+
+# Corpo da requisição
+$ body='{"event_code":"call.finished","object":{"id":"123123"}}'
+
+$ echo -n $body | openssl dgst -sha1 -hmac $key
+c7fb37d21fc3a868e346eca1d89af5ce15f83317
+```
 
 ## Eventos
 

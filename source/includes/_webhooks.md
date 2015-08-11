@@ -1,6 +1,6 @@
 # Webhooks
 
-Webhooks são integrações [configuradas na sua conta](http://app.atendesimples.com/webhooks) que escutarão a certos eventos do Atende Simples. Quando um evento ocorrer, o Atende Simples enviará uma notificação (requisição HTTP POST) para a URL configurada no webhook.
+Webhooks são integrações [configuradas na sua conta](http://app.atendesimples.com/webhooks) que escutarão a certos eventos do Atende Simples. Quando um evento ocorrer, o Atende Simples enviará uma requisição HTTP POST (notificação) para a URL configurada no webhook.
 
 Um **evento** é um *ação* que acontece com um determinado **recurso** do Atende Simples. Por exemplo, um evento ocorre quando uma ***chamada*** é ***atendida***.
 
@@ -39,11 +39,11 @@ As requisições realizadas para as URLs configuradas nos webhooks contém os se
 
     Cabeçalho               |        Descrição
 ----------------------------|-----------------------------------------------
-X-AtendeSimples-Event       | [Código do evento](#eventos) que gerou a notificação.
-X-AtendeSimples-Request-Id  | Código identificador da notificação/requisição, no formato [UUID][uuid].
-X-AtendeSimples-Environment | Ambiente de onde a notificação foi disparada (`production` ou `staging`).
+X-AtendeSimples-Event       | [Código do evento](#eventos) que gerou a requisição.
+X-AtendeSimples-Request-Id  | Código identificador da requisição, no formato [UUID][uuid].
+X-AtendeSimples-Environment | Ambiente de onde a requisição foi disparada (`production` ou `staging`).
 X-Hub-Signature             | Assinatura de segurança, para a sua aplicação verificar a autenticidade da requisição. O valor desse header é computado com o HMAC hex digest do corpo da requisição, usando o algoritmo sha1 com a chave secreta do webhook (disponível na página do webhook) como chave de criptografia (ver exemplo ao lado).
-User-Agent                  | `AtendeSimples-Robot` + o ambiente que originou a notificação.
+User-Agent                  | `AtendeSimples-Robot` + o ambiente que originou a requisição.
 Content-Type                | Formato do [payload](#payloads), de acordo com o que for configurado no webhook. Os formatos disponíveis são `application/json` e `application/x-www-form-urlencoded`.
 
 > Exemplo de como gerar o X-Hub-Signature:
@@ -83,7 +83,7 @@ call.finished        | Quando uma chamada é finalizada.
 call.audio_available | Quando o áudio de uma chamada fica disponível para dar play.
 call.call_tag        | Quando uma chamada é classificada pela ponta B.
 
-Ao configurar um webhook, você seleciona quais desses eventos ele escutará. Marcar somente os eventos específicos que você precisa tratar pode ajudar a limitar a quantidade de requisições HTTP que a sua aplicação receberá. Somente os eventos selecionados farão com que o webhook dispare notificações.
+Ao configurar um webhook, você seleciona quais desses eventos ele escutará. Marcar somente os eventos específicos que você precisa tratar pode ajudar a limitar a quantidade de requisições HTTP que a sua aplicação receberá. Somente os eventos selecionados farão com que o webhook dispare requisições.
 
 **Nota:** Independentemente de existir webhooks configurados ou não, o Atende Simples registra todos os eventos internamente (com exceção do [ping](#evento-ping)) e os disponibiliza no [Log de eventos][log_eventos] por um tempo limitado.
 
@@ -183,12 +183,12 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
 }
 ```
 
-As notificações enviadas pelos webhooks possuem um conjunto de informações chamado de **payload**, que contém dados do recurso (do momento que o evento ocorre) e dados do próprio evento. Essas informações são estruturadas nos seguintes campos:
+As requisições enviadas pelos webhooks possuem um conjunto de informações chamado de **payload**, que contém dados do recurso (do momento que o evento ocorre) e dados do próprio evento. Essas informações são estruturadas nos seguintes campos:
 
            |                          |
 -----------|--------------------------|
-event_code | Código do evento que originou a notificação, seguindo o padrão `resource.event`.
-webhook    | Dados do webhook que disparou a notificação.
+event_code | Código do evento que originou a requisição, seguindo o padrão `resource.event`.
+webhook    | Dados do webhook que disparou a requisição.
 object     | Dados do recurso relacionado ao evento, no momento em que ele ocorreu.
 changes    | Mudanças realizadas no recurso (presente somente quando `event` for `updated`).
 

@@ -62,7 +62,7 @@
 
           <h1 id="webhooks">Webhooks</h1>
 
-<p>Webhooks são integrações <a href="http://app.atendesimples.com/webhooks">configuradas na sua conta</a> que escutarão a certos eventos do Atende Simples. Quando um evento ocorrer, o Atende Simples enviará uma notificação (requisição HTTP POST) para a URL configurada no webhook.</p>
+<p>Webhooks são integrações <a href="http://app.atendesimples.com/webhooks">configuradas na sua conta</a> que escutarão a certos eventos do Atende Simples. Quando um evento ocorrer, o Atende Simples enviará uma requisição HTTP POST (notificação) para a URL configurada no webhook.</p>
 
 <p>Um <strong>evento</strong> é um <em>ação</em> que acontece com um determinado <strong>recurso</strong> do Atende Simples. Por exemplo, um evento ocorre quando uma <strong><em>chamada</em></strong> é <strong><em>atendida</em></strong>.</p>
 
@@ -104,15 +104,15 @@ X-AtendeSimples-Environment: staging
 </thead><tbody>
 <tr>
 <td>X-AtendeSimples-Event</td>
-<td><a href="#eventos">Código do evento</a> que gerou a notificação.</td>
+<td><a href="#eventos">Código do evento</a> que gerou a requisição.</td>
 </tr>
 <tr>
 <td>X-AtendeSimples-Request-Id</td>
-<td>Código identificador da notificação/requisição, no formato <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">UUID</a>.</td>
+<td>Código identificador da requisição, no formato <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">UUID</a>.</td>
 </tr>
 <tr>
 <td>X-AtendeSimples-Environment</td>
-<td>Ambiente de onde a notificação foi disparada (<code class="prettyprint">production</code> ou <code class="prettyprint">staging</code>).</td>
+<td>Ambiente de onde a requisição foi disparada (<code class="prettyprint">production</code> ou <code class="prettyprint">staging</code>).</td>
 </tr>
 <tr>
 <td>X-Hub-Signature</td>
@@ -120,7 +120,7 @@ X-AtendeSimples-Environment: staging
 </tr>
 <tr>
 <td>User-Agent</td>
-<td><code class="prettyprint">AtendeSimples-Robot</code> + o ambiente que originou a notificação.</td>
+<td><code class="prettyprint">AtendeSimples-Robot</code> + o ambiente que originou a requisição.</td>
 </tr>
 <tr>
 <td>Content-Type</td>
@@ -183,7 +183,7 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 </tr>
 </tbody></table>
 
-<p>Ao configurar um webhook, você seleciona quais desses eventos ele escutará. Marcar somente os eventos específicos que você precisa tratar pode ajudar a limitar a quantidade de requisições HTTP que a sua aplicação receberá. Somente os eventos selecionados farão com que o webhook dispare notificações.</p>
+<p>Ao configurar um webhook, você seleciona quais desses eventos ele escutará. Marcar somente os eventos específicos que você precisa tratar pode ajudar a limitar a quantidade de requisições HTTP que a sua aplicação receberá. Somente os eventos selecionados farão com que o webhook dispare requisições.</p>
 
 <p><strong>Nota:</strong> Independentemente de existir webhooks configurados ou não, o Atende Simples registra todos os eventos internamente (com exceção do <a href="#evento-ping">ping</a>) e os disponibiliza no <a href="http://app.atendesimples.com/webhook/event_logs">Log de eventos</a> por um tempo limitado.</p>
 
@@ -293,7 +293,7 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>As notificações enviadas pelos webhooks possuem um conjunto de informações chamado de <strong>payload</strong>, que contém dados do recurso (do momento que o evento ocorre) e dados do próprio evento. Essas informações são estruturadas nos seguintes campos:</p>
+<p>As requisições enviadas pelos webhooks possuem um conjunto de informações chamado de <strong>payload</strong>, que contém dados do recurso (do momento que o evento ocorre) e dados do próprio evento. Essas informações são estruturadas nos seguintes campos:</p>
 
 <table><thead>
 <tr>
@@ -303,11 +303,11 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 </thead><tbody>
 <tr>
 <td>event_code</td>
-<td>Código do evento que originou a notificação, seguindo o padrão <code class="prettyprint">resource.event</code>.</td>
+<td>Código do evento que originou a requisição, seguindo o padrão <code class="prettyprint">resource.event</code>.</td>
 </tr>
 <tr>
 <td>webhook</td>
-<td>Dados do webhook que disparou a notificação.</td>
+<td>Dados do webhook que disparou a requisição.</td>
 </tr>
 <tr>
 <td>object</td>

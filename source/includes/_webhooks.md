@@ -144,13 +144,11 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
   "call_tags": [
     {
       "code": "70",
-      "description": "Lead",
-      "status": "200"
+      "description": "Lead"
     },
     {
       "code": " 71",
-      "description": "Follow up",
-      "status": "0"
+      "description": "Follow up"
     }
   ],
   "audio_url": "https://app.atendesimples.com/public/audios/98b2ec022a7f051a84e65b",

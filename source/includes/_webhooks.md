@@ -192,7 +192,7 @@ As requisições enviadas pelos webhooks possuem um conjunto de informações ch
 
            |                          |
 -----------|--------------------------|
-event_code | Código do evento que originou a requisição, seguindo o padrão `resource.event`.
+event_code | [Código do evento](#eventos) que originou a requisição, seguindo o padrão `resource.event`.
 webhook    | Dados do webhook que disparou a requisição.
 object     | Dados do recurso relacionado ao evento, no momento em que ele ocorreu.
 changes    | Mudanças realizadas no recurso (presente somente quando `event` for `updated`).

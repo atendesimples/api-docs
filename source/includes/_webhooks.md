@@ -125,59 +125,66 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
 
 ```json
 {
-  "id": 1003,
-  "from_number": "552122334466",
-  "dnis": "5",
-  "call_started_at": "2015-01-01T01:11:00.000-02:00",
-  "status": "answered",
-  "status_details": "conference",
-  "business_hours": "worktime",
-  "inbound_amount": "10.0",
-  "total_amount": "15.0",
-  "billed_duration": 900,
-  "inbound_duration": 900,
-  "selected_options": [
-    "1",
-    "3",
-    "2"
-  ],
-  "call_tags": [
-    {
-      "code": "70",
-      "description": "Lead"
-    },
-    {
-      "code": " 71",
-      "description": "Follow up"
-    }
-  ],
-  "audio_url": "https://app.atendesimples.com/public/audios/98b2ec022a7f051a84e65b",
-  "outbound_calls": [
-    {
-      "started_at": "2015-01-01T01:11:00.000-02:00",
-      "phone_number": "123456",
-      "name": "Jane Doe",
-      "extension": 22,
-      "duration": 5,
-      "amount": "27.0"
-    },
-    {
-      "started_at": "2015-01-01T01:11:00.000-02:00",
-      "phone_number": "123456",
-      "name": "Jane Doe",
-      "extension": 22,
-      "duration": 5,
-      "amount": "27.0"
-    },
-    {
-      "started_at": "2015-01-01T01:11:00.000-02:00",
-      "phone_number": "123456",
-      "name": "Jane Doe",
-      "extension": 22,
-      "duration": 5,
-      "amount": "27.0"
-    }
-  ]
+  "event_code": "call.finished",
+  "webhook": {
+    "id": 453,
+    "url": "http://seu-site.com/15a0nqn1"
+  },
+  "object": {
+    "id": 1003,
+    "from_number": "552122334466",
+    "dnis": "5",
+    "call_started_at": "2015-01-01T01:11:00.000-02:00",
+    "status": "answered",
+    "status_details": "conference",
+    "business_hours": "worktime",
+    "inbound_amount": "10.0",
+    "total_amount": "15.0",
+    "billed_duration": 900,
+    "inbound_duration": 900,
+    "selected_options": [
+      "1",
+      "3",
+      "2"
+    ],
+    "call_tags": [
+      {
+        "code": "70",
+        "description": "Lead"
+      },
+      {
+        "code": " 71",
+        "description": "Follow up"
+      }
+    ],
+    "audio_url": "https://app.atendesimples.com/public/audios/98b2ec022a7f051a84e65b",
+    "outbound_calls": [
+      {
+        "started_at": "2015-01-01T01:11:00.000-02:00",
+        "phone_number": "123456",
+        "name": "Jane Doe",
+        "extension": 22,
+        "duration": 5,
+        "amount": "27.0"
+      },
+      {
+        "started_at": "2015-01-01T01:11:00.000-02:00",
+        "phone_number": "123456",
+        "name": "Jane Doe",
+        "extension": 22,
+        "duration": 5,
+        "amount": "27.0"
+      },
+      {
+        "started_at": "2015-01-01T01:11:00.000-02:00",
+        "phone_number": "123456",
+        "name": "Jane Doe",
+        "extension": 22,
+        "duration": 5,
+        "amount": "27.0"
+      }
+    ]
+  }
 }
 ```
 

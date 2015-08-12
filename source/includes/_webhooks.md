@@ -128,7 +128,7 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
   "id": 1003,
   "from_number": "552122334466",
   "dnis": "5",
-  "call_started_at": "2011-01-01T01:11:00.000-02:00",
+  "call_started_at": "2015-01-01T01:11:00.000-02:00",
   "status": "answered",
   "status_details": "conference",
   "business_hours": "worktime",
@@ -156,7 +156,7 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
   "audio_url": "https://app.atendesimples.com/public/audios/98b2ec022a7f051a84e65b",
   "outbound_calls": [
     {
-      "started_at": "2011-01-01T01:11:00.000-02:00",
+      "started_at": "2015-01-01T01:11:00.000-02:00",
       "phone_number": "123456",
       "name": "Jane Doe",
       "extension": 22,
@@ -164,7 +164,7 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
       "amount": "27.0"
     },
     {
-      "started_at": "2011-01-01T01:11:00.000-02:00",
+      "started_at": "2015-01-01T01:11:00.000-02:00",
       "phone_number": "123456",
       "name": "Jane Doe",
       "extension": 22,
@@ -172,7 +172,7 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
       "amount": "27.0"
     },
     {
-      "started_at": "2011-01-01T01:11:00.000-02:00",
+      "started_at": "2015-01-01T01:11:00.000-02:00",
       "phone_number": "123456",
       "name": "Jane Doe",
       "extension": 22,
@@ -201,7 +201,7 @@ Veja exemplos de payloads para todos os tipos de evento na coluna ao lado.
 id                     | Integer | Código identificador da chamada.
 from_number            | String  | Número do telefone de quem ligou para o seu atendimento (ponta A), no formato `código do país` + `DDD` + `telefone`. Exemplo: `"552130409670"`.
 dnis                   | String  | Número do seu atendimento, no formato `código do país` + `número`. Exemplo: `"5508008871565"`.
-call_started_at        | DateTime| Data e hora do início da chamada, com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2015-05-07 16:26:05 -0300"`.
+call_started_at        | DateTime| Data e hora do início da chamada, no formato [ISO8601](iso8601), com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2015-05-07T16:26:05.000-03:00"`.
 status                 | String  | Status da chamada no momento do evento. Os status possíveis são: `newcall`, `in_progress`, `abandoned`, `answered`, `blocked`, `handled` e `missed`.
 status_details         | String  | Complemento do status. Pode vir com o nome do atendente que atendeu a ligação, uma mensagem personalizada ou com a mensagem `"Desligada"`.
 business_hours         | String  | Identifica se a chamada ocorreu dentro ou fora do horário de atendimento configurado. Os valores possíveis são: `worktime` e `out_of_worktime`.
@@ -215,7 +215,7 @@ call_tags &#65515; code       | String  | Código que o atendente digitou para e
 call_tags &#65515; description| String  | Descrição referente ao código digitado na classificação.
 audio_url              | String  | Link para o arquivo com a gravação da conversa ou áudio da caixa postal. Exemplo: `"https://app.atendesimples.com/public/audios/98b2ec022a7f051a84e65b"`.
 outbound_calls         | Array   | Informações referente aos reencaminhamentos da chamada (pode haver mais de um). Só serão apresentados os reencaminhamentos que forem atendidos.
-outbound_calls &#65515; started_at   | DateTime | Data e hora do reencaminhamento, com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2011-05-07 17:26:05 -0300"`.
+outbound_calls &#65515; started_at   | DateTime | Data e hora do reencaminhamento, no formato [ISO8601](iso8601), com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2015-05-07T17:26:05.000-03:00"`.
 outbound_calls &#65515; phone_number | String   | Número do telefone que atendeu o reencaminhamento. Exemplo: `"5511999999999"`.
 outbound_calls &#65515; name         | String   | Nome do atendente que atendeu o reencaminhamento. Exemplo: `"João"`.
 outbound_calls &#65515; extension    | Integer  | Ramal do atendente que atendeu o reencaminhamento. Exemplo: `22`.
@@ -224,3 +224,4 @@ outbound_calls &#65515; amount       | Float    | Valor cobrado pelo reencaminha
 
 [uuid]: https://en.wikipedia.org/wiki/Universally_unique_identifier
 [log_eventos]: http://app.atendesimples.com/webhook/event_logs
+[iso8601]: https://en.wikipedia.org/wiki/ISO_8601

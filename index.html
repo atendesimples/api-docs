@@ -181,6 +181,10 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <td>call.call_tag</td>
 <td>Quando uma chamada é classificada pela ponta B.</td>
 </tr>
+<tr>
+<td>call.interaction</td>
+<td>Quando quem ligou digita um número válido em alguma interação.</td>
+</tr>
 </tbody></table>
 
 <p>Ao configurar um webhook, você seleciona quais desses eventos ele escutará. Marcar somente os eventos específicos que você precisa tratar pode ajudar a limitar a quantidade de requisições HTTP que a sua aplicação receberá. Somente os eventos selecionados farão com que o webhook dispare requisições.</p>
@@ -250,6 +254,14 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
     </span><span class="s2">"business_hours"</span><span class="p">:</span><span class="w"> </span><span class="s2">"worktime"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"inbound_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.0"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"interactions"</span><span class="p">:</span><span class="w">
+      </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"digits"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"selected_option"</span><span class="p">:</span><span class="s2">"7"</span><span class="w">
+      </span><span class="p">},{</span><span class="w">
+        </span><span class="s2">"digits"</span><span class="p">:</span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"selected_option"</span><span class="p">:</span><span class="s2">"8"</span><span class="w">
+      </span><span class="p">}],</span><span class="w">
     </span><span class="s2">"billed_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">900</span><span class="p">,</span><span class="w">
     </span><span class="s2">"inbound_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">900</span><span class="p">,</span><span class="w">
     </span><span class="s2">"selected_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -449,6 +461,21 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <td>outbound_calls &#65515; amount</td>
 <td>Float</td>
 <td>Valor cobrado pelo reencaminhamento. Exemplo: <code class="prettyprint">17.28</code>.</td>
+</tr>
+<tr>
+<td>interactions</td>
+<td>Array</td>
+<td>Informações referente às interações da chamada (pode haver mais de uma).</td>
+</tr>
+<tr>
+<td>interactions &#65515; digits</td>
+<td>Integer</td>
+<td>Número digitado na interação por quem ligou para seu atendimento.</td>
+</tr>
+<tr>
+<td>interactions &#65515; selected_option</td>
+<td>Integer</td>
+<td>Opção de interação do menu digitada por quem ligou.</td>
 </tr>
 </tbody></table>
 

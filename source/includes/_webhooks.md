@@ -82,6 +82,7 @@ call.b_leg_answered  | Quando uma chamada é atendida pela ponta B.
 call.finished        | Quando uma chamada é finalizada.
 call.audio_available | Quando o áudio de uma chamada fica disponível para dar play.
 call.call_tag        | Quando uma chamada é classificada pela ponta B.
+call.interaction     | Quando quem ligou digita um número válido em alguma interação.
 
 Ao configurar um webhook, você seleciona quais desses eventos ele escutará. Marcar somente os eventos específicos que você precisa tratar pode ajudar a limitar a quantidade de requisições HTTP que a sua aplicação receberá. Somente os eventos selecionados farão com que o webhook dispare requisições.
 
@@ -140,6 +141,14 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
     "business_hours": "worktime",
     "inbound_amount": "10.0",
     "total_amount": "15.0",
+    "interactions":
+      [{
+        "digits":"1",
+        "selected_option":"7"
+      },{
+        "digits":"1234",
+        "selected_option":"8"
+      }],
     "billed_duration": 900,
     "inbound_duration": 900,
     "selected_options": [
@@ -188,6 +197,7 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
 }
 ```
 
+
 As requisições enviadas pelos webhooks possuem um conjunto de informações chamado de **payload**, que contém dados do recurso (do momento que o evento ocorre) e dados do próprio evento. Essas informações são estruturadas nos seguintes campos:
 
            |                          |
@@ -226,6 +236,9 @@ outbound_calls &#65515; name         | String   | Nome do atendente que atendeu 
 outbound_calls &#65515; extension    | Integer  | Ramal do atendente que atendeu o reencaminhamento. Exemplo: `22`.
 outbound_calls &#65515; duration     | Integer  | Duração em segundos do reencaminhamento.
 outbound_calls &#65515; amount       | Float    | Valor cobrado pelo reencaminhamento. Exemplo: `17.28`.
+interactions         | Array   | Informações referente às interações da chamada (pode haver mais de uma).
+interactions &#65515; digits       | Integer    | Número digitado na interação por quem ligou para seu atendimento.
+interactions &#65515; selected_option | Integer    | Opção de interação do menu digitada por quem ligou.
 
 [uuid]: https://en.wikipedia.org/wiki/Universally_unique_identifier
 [log_eventos]: http://app.atendesimples.com/webhook/event_logs

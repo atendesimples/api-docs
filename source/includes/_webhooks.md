@@ -53,7 +53,7 @@ Content-Type                | Formato do [payload](#payloads), de acordo com o q
 key = '31f439e8b93520776732ad97e129700d9d1020ed'
 
 # Corpo da requisição
-body = '{"event_code":"call.finished","call":{"id":"123123"}}'
+body = '{"event_code":"call.finished","call":{"call_id":"123123"}}'
 
 digest = OpenSSL::Digest.new('sha1')
 OpenSSL::HMAC.hexdigest(digest, key, body)
@@ -65,7 +65,7 @@ OpenSSL::HMAC.hexdigest(digest, key, body)
 $ key='31f439e8b93520776732ad97e129700d9d1020ed'
 
 # Corpo da requisição
-$ body='{"event_code":"call.finished","call":{"id":"123123"}}'
+$ body='{"event_code":"call.finished","call":{"call_id":"123123"}}'
 
 $ echo -n $body | openssl dgst -sha1 -hmac $key
 c7fb37d21fc3a868e346eca1d89af5ce15f83317
@@ -132,7 +132,7 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
     "url": "http://seu-site.com/15a0nqn1"
   },
   "call": {
-    "id": 1003,
+    "call_id": 1003,
     "from_number": "552122334466",
     "dnis": "5",
     "started_at": "2015-01-01T01:11:00.000-02:00",
@@ -213,7 +213,7 @@ Veja exemplos de payloads para todos os tipos de evento na coluna ao lado.
 
     Campo              |  Tipo   |  Descrição
 -----------------------|---------|-----------------------------------------------
-id                     | Integer | Código identificador da chamada.
+call_id                | Integer | Código identificador da chamada.
 from_number            | String  | Número do telefone de quem ligou para o seu atendimento (ponta A), no formato `código do país` + `DDD` + `telefone`. Exemplo: `"552130409670"`.
 dnis                   | String  | Número do seu atendimento, no formato `código do país` + `número`. Exemplo: `"5508008871565"`.
 started_at             | DateTime| Data e hora do início da chamada, no formato [ISO8601][iso8601], com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2015-05-07T16:26:05.000-03:00"`.

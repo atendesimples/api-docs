@@ -135,7 +135,7 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
     "id": 1003,
     "from_number": "552122334466",
     "dnis": "5",
-    "call_started_at": "2015-01-01T01:11:00.000-02:00",
+    "started_at": "2015-01-01T01:11:00.000-02:00",
     "status": "answered",
     "status_details": "conference",
     "business_hours": "worktime",
@@ -216,7 +216,7 @@ Veja exemplos de payloads para todos os tipos de evento na coluna ao lado.
 id                     | Integer | Código identificador da chamada.
 from_number            | String  | Número do telefone de quem ligou para o seu atendimento (ponta A), no formato `código do país` + `DDD` + `telefone`. Exemplo: `"552130409670"`.
 dnis                   | String  | Número do seu atendimento, no formato `código do país` + `número`. Exemplo: `"5508008871565"`.
-call_started_at        | DateTime| Data e hora do início da chamada, no formato [ISO8601][iso8601], com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2015-05-07T16:26:05.000-03:00"`.
+started_at             | DateTime| Data e hora do início da chamada, no formato [ISO8601][iso8601], com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2015-05-07T16:26:05.000-03:00"`.
 status                 | String  | Status da chamada no momento do evento. Os status possíveis são: `newcall`, `in_progress`, `abandoned`, `answered`, `blocked`, `handled` e `missed`.
 status_details         | String  | Complemento do status. Pode vir com o nome do atendente que atendeu a ligação, uma mensagem personalizada ou com a mensagem `"Desligada"`.
 business_hours         | String  | Identifica se a chamada ocorreu dentro ou fora do horário de atendimento configurado. Os valores possíveis são: `worktime` e `out_of_worktime`.

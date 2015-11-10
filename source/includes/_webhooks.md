@@ -28,6 +28,9 @@ X-AtendeSimples-Environment: staging
 
 {
   "event_code": "ping",
+  "call": {
+    ...
+  },
   "webhook": {
     "id": 1,
     "url": "http://requestb.in/1d4c5sf1"
@@ -115,6 +118,9 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
 ```json
 {
   "event_code": "ping",
+  "call": {
+    ...
+  },
   "webhook": {
     "id": 1,
     "url": "http://seu-site.com/15a0nqn1"

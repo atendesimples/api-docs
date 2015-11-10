@@ -53,7 +53,7 @@ Content-Type                | Formato do [payload](#payloads), de acordo com o q
 key = '31f439e8b93520776732ad97e129700d9d1020ed'
 
 # Corpo da requisição
-body = '{"event_code":"call.finished","object":{"id":"123123"}}'
+body = '{"event_code":"call.finished","call":{"id":"123123"}}'
 
 digest = OpenSSL::Digest.new('sha1')
 OpenSSL::HMAC.hexdigest(digest, key, body)
@@ -65,7 +65,7 @@ OpenSSL::HMAC.hexdigest(digest, key, body)
 $ key='31f439e8b93520776732ad97e129700d9d1020ed'
 
 # Corpo da requisição
-$ body='{"event_code":"call.finished","object":{"id":"123123"}}'
+$ body='{"event_code":"call.finished","call":{"id":"123123"}}'
 
 $ echo -n $body | openssl dgst -sha1 -hmac $key
 c7fb37d21fc3a868e346eca1d89af5ce15f83317
@@ -131,7 +131,7 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
     "id": 453,
     "url": "http://seu-site.com/15a0nqn1"
   },
-  "object": {
+  "call": {
     "id": 1003,
     "from_number": "552122334466",
     "dnis": "5",
@@ -204,7 +204,7 @@ As requisições enviadas pelos webhooks possuem um conjunto de informações ch
 -----------|--------------------------|
 event_code | [Código do evento](#eventos) que originou a requisição, seguindo o padrão `resource.event`.
 webhook    | Dados do webhook que disparou a requisição.
-object     | Dados do recurso relacionado ao evento, no momento em que ele ocorreu.
+call       | Dados da chamada.
 changes    | Mudanças realizadas no recurso (presente somente quando `event` for `updated`).
 
 Veja exemplos de payloads para todos os tipos de evento na coluna ao lado.

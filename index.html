@@ -87,6 +87,9 @@ X-AtendeSimples-Environment: staging
 
 {
   "event_code": "ping",
+  "call": {
+    ...
+  },
   "webhook": {
     "id": 1,
     "url": "http://requestb.in/1d4c5sf1"
@@ -135,7 +138,7 @@ X-AtendeSimples-Environment: staging
 <span class="n">key</span> <span class="o">=</span> <span class="s1">'31f439e8b93520776732ad97e129700d9d1020ed'</span>
 
 <span class="c1"># Corpo da requisição</span>
-<span class="n">body</span> <span class="o">=</span> <span class="s1">'{"event_code":"call.finished","object":{"id":"123123"}}'</span>
+<span class="n">body</span> <span class="o">=</span> <span class="s1">'{"event_code":"call.finished","call":{"call_id":"123123"}}'</span>
 
 <span class="n">digest</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Digest</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'sha1'</span><span class="p">)</span>
 <span class="no">OpenSSL</span><span class="o">::</span><span class="no">HMAC</span><span class="p">.</span><span class="nf">hexdigest</span><span class="p">(</span><span class="n">digest</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
@@ -145,7 +148,7 @@ X-AtendeSimples-Environment: staging
 <span class="gp">$ </span><span class="nv">key</span><span class="o">=</span><span class="s1">'31f439e8b93520776732ad97e129700d9d1020ed'</span>
 
 <span class="c"># Corpo da requisição</span>
-<span class="gp">$ </span><span class="nv">body</span><span class="o">=</span><span class="s1">'{"event_code":"call.finished","object":{"id":"123123"}}'</span>
+<span class="gp">$ </span><span class="nv">body</span><span class="o">=</span><span class="s1">'{"event_code":"call.finished","call":{"call_id":"123123"}}'</span>
 
 <span class="gp">$ </span><span class="nb">echo</span> -n <span class="nv">$body</span> | openssl dgst -sha1 -hmac <span class="nv">$key</span>
 c7fb37d21fc3a868e346eca1d89af5ce15f83317
@@ -228,6 +231,9 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"event_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"call"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="err">}</span><span class="p">,</span><span class="w">
   </span><span class="s2">"webhook"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://seu-site.com/15a0nqn1"</span><span class="w">
@@ -244,11 +250,11 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">453</span><span class="p">,</span><span class="w">
     </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://seu-site.com/15a0nqn1"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1003</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"call"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"call_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1003</span><span class="p">,</span><span class="w">
     </span><span class="s2">"from_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"552122334466"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"dnis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"call_started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-01T01:11:00.000-02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-01T01:11:00.000-02:00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"answered"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status_details"</span><span class="p">:</span><span class="w"> </span><span class="s2">"conference"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"business_hours"</span><span class="p">:</span><span class="w"> </span><span class="s2">"worktime"</span><span class="p">,</span><span class="w">
@@ -327,8 +333,8 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <td>Dados do webhook que disparou a requisição.</td>
 </tr>
 <tr>
-<td>object</td>
-<td>Dados do recurso relacionado ao evento, no momento em que ele ocorreu.</td>
+<td>call</td>
+<td>Dados da chamada.</td>
 </tr>
 <tr>
 <td>changes</td>
@@ -348,7 +354,7 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 </tr>
 </thead><tbody>
 <tr>
-<td>id</td>
+<td>call_id</td>
 <td>Integer</td>
 <td>Código identificador da chamada.</td>
 </tr>
@@ -363,7 +369,7 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <td>Número do seu atendimento, no formato <code class="prettyprint">código do país</code> + <code class="prettyprint">número</code>. Exemplo: <code class="prettyprint">&quot;5508008871565&quot;</code>.</td>
 </tr>
 <tr>
-<td>call_started_at</td>
+<td>started_at</td>
 <td>DateTime</td>
 <td>Data e hora do início da chamada, no formato <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a>, com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: <code class="prettyprint">&quot;2015-05-07T16:26:05.000-03:00&quot;</code>.</td>
 </tr>

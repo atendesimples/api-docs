@@ -147,14 +147,6 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
     "business_hours": "worktime",
     "inbound_amount": "10.0",
     "total_amount": "15.0",
-    "interactions":
-      [{
-        "digits":"1",
-        "selected_option":"7"
-      },{
-        "digits":"1234",
-        "selected_option":"8"
-      }],
     "billed_duration": 900,
     "inbound_duration": 900,
     "selected_options": [
@@ -176,27 +168,40 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
     "outbound_calls": [
       {
         "started_at": "2015-01-01T01:11:00.000-02:00",
-        "phone_number": "123456",
+        "phone_number": "5521988221122",
         "name": "Jane Doe",
+        "email": "jane@as.com",
         "extension": 22,
         "duration": 5,
         "amount": "27.0"
       },
       {
-        "started_at": "2015-01-01T01:11:00.000-02:00",
-        "phone_number": "123456",
-        "name": "Jane Doe",
-        "extension": 22,
-        "duration": 5,
-        "amount": "27.0"
+        "started_at": "2015-01-01T01:15:00.000-02:00",
+        "phone_number": "5521988221010",
+        "name": "André",
+        "email": "andre@atendesimples.com.br",
+        "extension": 23,
+        "duration": 9,
+        "amount": "34.0"
       },
       {
-        "started_at": "2015-01-01T01:11:00.000-02:00",
-        "phone_number": "123456",
-        "name": "Jane Doe",
-        "extension": 22,
+        "started_at": "2015-01-01T01:19:00.000-02:00",
+        "phone_number": "552130992121",
+        "name": "Joyce",
+        "email": "joyce@atendesimples.com.br",
+        "extension": 26,
         "duration": 5,
         "amount": "27.0"
+      }
+    ],
+    "interactions": [
+      {
+        "digits": "30743211233",
+        "selected_option": "2"
+      },
+      {
+        "digits": "34",
+        "selected_option": "1"
       }
     ]
   }
@@ -239,6 +244,7 @@ outbound_calls         | Array   | Informações referente aos reencaminhamentos
 outbound_calls &#65515; started_at   | DateTime | Data e hora do reencaminhamento, no formato [ISO8601][iso8601], com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2015-05-07T17:26:05.000-03:00"`.
 outbound_calls &#65515; phone_number | String   | Número do telefone que atendeu o reencaminhamento. Exemplo: `"5511999999999"`.
 outbound_calls &#65515; name         | String   | Nome do atendente que atendeu o reencaminhamento. Exemplo: `"João"`.
+outbound_calls &#65515; email        | String  | E-mail do atendente que atendeu o reencaminhamento. Exemplo: `joao@suaempresa.com`.
 outbound_calls &#65515; extension    | Integer  | Ramal do atendente que atendeu o reencaminhamento. Exemplo: `22`.
 outbound_calls &#65515; duration     | Integer  | Duração em segundos do reencaminhamento.
 outbound_calls &#65515; amount       | Float    | Valor cobrado pelo reencaminhamento. Exemplo: `17.28`.

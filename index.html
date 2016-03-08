@@ -188,6 +188,10 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <td>call.interaction</td>
 <td>Quando quem ligou digita um número válido em alguma interação.</td>
 </tr>
+<tr>
+<td>call.word_spotting</td>
+<td>Quando uma chamada tiver termos em monitoramento identificados.</td>
+</tr>
 </tbody></table>
 
 <p>Ao configurar um webhook, você seleciona quais desses eventos ele escutará. Marcar somente os eventos específicos que você precisa tratar pode ajudar a limitar a quantidade de requisições HTTP que a sua aplicação receberá. Somente os eventos selecionados farão com que o webhook dispare requisições.</p>
@@ -315,6 +319,14 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"digits"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"selected_option"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"word_spottings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"word"</span><span class="p">:</span><span class="w"> </span><span class="s2">"procon"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"word_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reclamação"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"occurred_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1900-01-01T00:01:48.159+00:00"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -481,7 +493,7 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <tr>
 <td>interactions</td>
 <td>Array</td>
-<td>Informações referente às interações da chamada (pode haver mais de uma).</td>
+<td>Informações referente às interações da chamada.</td>
 </tr>
 <tr>
 <td>interactions &#65515; digits</td>
@@ -492,6 +504,31 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <td>interactions &#65515; selected_option</td>
 <td>Integer</td>
 <td>Opção de interação do menu digitada por quem ligou.</td>
+</tr>
+<tr>
+<td>word_spottings</td>
+<td>Array</td>
+<td>Informações referente ao monitoramento de termos.</td>
+</tr>
+<tr>
+<td>word_spottings &#65515; word</td>
+<td>String</td>
+<td>Termo identificado durante a chamada. Exemplo: <code class="prettyprint">&quot;procon&quot;</code>.</td>
+</tr>
+<tr>
+<td>word_spottings &#65515; word_group</td>
+<td>String</td>
+<td>Grupo ao qual o termo pertence. Exemplo: <code class="prettyprint">&quot;reclamação&quot;</code>.</td>
+</tr>
+<tr>
+<td>word_spottings &#65515; score</td>
+<td>Integer</td>
+<td>Porcentagem de certeza de que o termo identificado na chamada é realmente o que foi configurado. Exemplo: 85.</td>
+</tr>
+<tr>
+<td>word_spottings &#65515; occurred_at</td>
+<td>Time</td>
+<td>Tempo da chamada em que o termo foi identificado. Sendo uma representação de tempo, a data virá sempre &ldquo;zerada&rdquo;, e deverá ser desconsiderada. Exemplo: <code class="prettyprint">&quot;1900-01-01T00:01:48.159+00:00&quot;</code> se refere ao tempo <code class="prettyprint">1m, 48s e 159ms</code> da chamada.</td>
 </tr>
 </tbody></table>
 

@@ -86,6 +86,7 @@ call.finished        | Quando uma chamada é finalizada.
 call.audio_available | Quando o áudio de uma chamada fica disponível para dar play.
 call.call_tag        | Quando uma chamada é classificada pela ponta B.
 call.interaction     | Quando quem ligou digita um número válido em alguma interação.
+call.word_spotting   | Quando uma chamada tiver termos em monitoramento identificados.
 
 Ao configurar um webhook, você seleciona quais desses eventos ele escutará. Marcar somente os eventos específicos que você precisa tratar pode ajudar a limitar a quantidade de requisições HTTP que a sua aplicação receberá. Somente os eventos selecionados farão com que o webhook dispare requisições.
 
@@ -203,6 +204,14 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
         "digits": "34",
         "selected_option": "1"
       }
+    ],
+    "word_spottings": [
+      {
+        "word": "procon",
+        "word_group": "reclamação",
+        "score": 45,
+        "occurred_at": "1900-01-01T00:01:48.159+00:00"
+      }
     ]
   }
 }
@@ -248,9 +257,14 @@ outbound_calls &#65515; email        | String  | E-mail do atendente que atendeu
 outbound_calls &#65515; extension    | Integer  | Ramal do atendente que atendeu o reencaminhamento. Exemplo: `22`.
 outbound_calls &#65515; duration     | Integer  | Duração em segundos do reencaminhamento.
 outbound_calls &#65515; amount       | Float    | Valor cobrado pelo reencaminhamento. Exemplo: `17.28`.
-interactions         | Array   | Informações referente às interações da chamada (pode haver mais de uma).
+interactions         | Array   | Informações referente às interações da chamada.
 interactions &#65515; digits       | Integer    | Número digitado na interação por quem ligou para seu atendimento.
-interactions &#65515; selected_option | Integer    | Opção de interação do menu digitada por quem ligou.
+interactions &#65515; selected_option | Integer | Opção de interação do menu digitada por quem ligou.
+word_spottings       | Array   | Informações referente ao monitoramento de termos.
+word\_spottings &#65515; word         | String  | Termo identificado durante a chamada. Exemplo: `"procon"`.
+word\_spottings &#65515; word_group   | String  | Grupo ao qual o termo pertence. Exemplo: `"reclamação"`.
+word\_spottings &#65515; score        | Integer | Porcentagem de certeza de que o termo identificado na chamada é realmente o que foi configurado. Exemplo: 85.
+word\_spottings &#65515; occurred_at  | Time    | Tempo da chamada em que o termo foi identificado. Sendo uma representação de tempo, a data virá sempre "zerada", e deverá ser desconsiderada. Exemplo: `"1900-01-01T00:01:48.159+00:00"` se refere ao tempo `1m, 48s e 159ms` da chamada.
 
 [uuid]: https://en.wikipedia.org/wiki/Universally_unique_identifier
 [log_eventos]: http://app.atendesimples.com/webhook/event_logs

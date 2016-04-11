@@ -262,7 +262,7 @@ outbound_calls &#65515; amount       | Float    | Valor cobrado pelo reencaminha
 interactions         | Array   | Informações referente às interações da chamada.
 interactions &#65515; digits       | Integer    | Número digitado na interação por quem ligou para seu atendimento.
 interactions &#65515; selected_option | Integer | Opção de interação do menu digitada por quem ligou.
-interactions &#65515; validation_status | String | Status de validação da Interação.
+interactions &#65515; validation_status | String | Status de validação da interação. Valores possíveis: `"ok"` ou `"error"`.
 word_spottings       | Array   | Informações referente ao monitoramento de termos.
 word\_spottings &#65515; word         | String  | Termo identificado durante a chamada. Exemplo: `"procon"`.
 word\_spottings &#65515; word_group   | String  | Grupo ao qual o termo pertence. Exemplo: `"reclamação"`.

@@ -166,6 +166,7 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
       }
     ],
     "audio_url": "https://app.atendesimples.com/public/audios/98b2ec022a7f051a84e65b",
+    "zendesk_ticket_id": "673",
     "outbound_calls": [
       {
         "started_at": "2015-01-01T01:11:00.000-02:00",
@@ -251,6 +252,7 @@ call_tags              | Array   | Classificações da chamada registradas por q
 call_tags &#65515; code       | String  | Código que o atendente digitou para efetuar a classificação.
 call_tags &#65515; description| String  | Descrição referente ao código digitado na classificação.
 audio_url              | String  | Link para o arquivo com a gravação da conversa ou áudio da caixa postal. Exemplo: `"https://app.atendesimples.com/public/audios/98b2ec022a7f051a84e65b"`.
+zendesk_ticket_id      | String  | Código identificador do ticket do Zendesk associado à chamada.
 outbound_calls         | Array   | Informações referente aos reencaminhamentos da chamada (pode haver mais de um). Só serão apresentados os reencaminhamentos que forem atendidos.
 outbound_calls &#65515; started_at   | DateTime | Data e hora do reencaminhamento, no formato [ISO8601][iso8601], com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2015-05-07T17:26:05.000-03:00"`.
 outbound_calls &#65515; phone_number | String   | Número do telefone que atendeu o reencaminhamento. Exemplo: `"5511999999999"`.

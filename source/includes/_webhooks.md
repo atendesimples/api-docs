@@ -146,10 +146,10 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
     "status": "answered",
     "status_details": "conference",
     "business_hours": "worktime",
-    "inbound_amount": "10.0",
+    "inbound_amount": "15.0",
     "total_amount": "15.0",
-    "billed_duration": 900,
-    "inbound_duration": 900,
+    "billed_duration": 60,
+    "inbound_duration": 75,
     "selected_options": [
       "1",
       "3",
@@ -174,8 +174,9 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
         "name": "Jane Doe",
         "email": "jane@as.com",
         "extension": 22,
-        "duration": 5,
-        "amount": "27.0"
+        "duration": 17,
+        "billed_duration": 11,
+        "amount": "2.75"
       },
       {
         "started_at": "2015-01-01T01:15:00.000-02:00",
@@ -183,8 +184,9 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
         "name": "André",
         "email": "andre@atendesimples.com.br",
         "extension": 23,
-        "duration": 9,
-        "amount": "34.0"
+        "duration": 34,
+        "billed_duration": 30,
+        "amount": "7.5"
       },
       {
         "started_at": "2015-01-01T01:19:00.000-02:00",
@@ -192,8 +194,9 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
         "name": "Joyce",
         "email": "joyce@atendesimples.com.br",
         "extension": 26,
-        "duration": 5,
-        "amount": "27.0"
+        "duration": 24,
+        "billed_duration": 19,
+        "amount": "4.75"
       }
     ],
     "interactions": [
@@ -259,7 +262,8 @@ outbound_calls &#65515; phone_number | String   | Número do telefone que atende
 outbound_calls &#65515; name         | String   | Nome do atendente que atendeu o reencaminhamento. Exemplo: `"João"`.
 outbound_calls &#65515; email        | String  | E-mail do atendente que atendeu o reencaminhamento. Exemplo: `joao@suaempresa.com`.
 outbound_calls &#65515; extension    | Integer  | Ramal do atendente que atendeu o reencaminhamento. Exemplo: `22`.
-outbound_calls &#65515; duration     | Integer  | Duração em segundos do reencaminhamento.
+outbound_calls &#65515; duration     | Integer  | Duração real do reencaminhamento (em segundos).
+outbound_calls &#65515; billed_duration | Integer  | Duração cobrada do reencaminhamento (em segundos).
 outbound_calls &#65515; amount       | Float    | Valor cobrado pelo reencaminhamento. Exemplo: `17.28`.
 interactions         | Array   | Informações referente às interações da chamada.
 interactions &#65515; digits       | Integer    | Número digitado na interação por quem ligou para seu atendimento.

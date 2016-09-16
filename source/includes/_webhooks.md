@@ -81,6 +81,7 @@ Todo evento possui um código que identifica o seu tipo. Esses códigos são for
        Código        |        Descrição
 ---------------------|-----------------------------------------------
 call.newcall         | Quando uma chamada nova é iniciada.
+call.a_leg_answered  | Quando uma chamada é atendida pela ponta A. Somente quando a `direction` for `outbound`
 call.b_leg_answered  | Quando uma chamada é atendida pela ponta B.
 call.finished        | Quando uma chamada é finalizada.
 call.audio_available | Quando o áudio de uma chamada fica disponível para dar play.
@@ -242,6 +243,7 @@ Veja exemplos de payloads para todos os tipos de evento na coluna ao lado.
 call_id                | String  | Código identificador da chamada.
 from_number            | String  | Número do telefone de quem ligou para o seu atendimento (ponta A), no formato `código do país` + `DDD` + `telefone`. Exemplo: `"552130409670"`.
 dnis                   | String  | Número do seu atendimento, no formato `código do país` + `número`. Exemplo: `"5508008871565"`.
+direction              | String  | Direção da chamada: `inbound` ou `outbound`. Ex.: quando alguém ligar para o seu atendimento será `inbound` ou quando for uma chamada de alguns dos discadores será `outbound`
 started_at             | DateTime| Data e hora do início da chamada, no formato [ISO8601][iso8601], com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2015-05-07T16:26:05.000-03:00"`.
 status                 | String  | Status da chamada no momento do evento. Os status possíveis são: `newcall`, `in_progress`, `abandoned`, `answered`, `blocked`, `handled` e `missed`.
 status_details         | String  | Complemento do status. Pode vir com o nome do atendente que atendeu a ligação, uma mensagem personalizada ou com a mensagem `"Desligada"`.

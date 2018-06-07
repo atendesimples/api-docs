@@ -22,11 +22,11 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" />
+        <img src="images/navbar.png" alt="Navbar" />
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <img src="images/logo.png" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="ruby">ruby</a>
               <a href="#" data-language-name="shell">shell</a>
@@ -270,6 +270,11 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
     </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15.0"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"billed_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
     </span><span class="s2">"inbound_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ura_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dial_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"aleg_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bleg_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cleg_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
     </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inbound"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"customer_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_info"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"selected_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -298,6 +303,8 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
         </span><span class="s2">"extension"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
         </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
         </span><span class="s2">"billed_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"option"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
         </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.75"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -443,6 +450,31 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <td>Duração real da chamada (em segundos), sem arredondamento.</td>
 </tr>
 <tr>
+<td>ura_duration</td>
+<td>Integer</td>
+<td>Duração na ura (em segundos), sem arredondamento.</td>
+</tr>
+<tr>
+<td>dial_duration</td>
+<td>Integer</td>
+<td>Tempo de espera na fila (em segundos), sem arredondamento.</td>
+</tr>
+<tr>
+<td>aleg_duration</td>
+<td>Integer</td>
+<td>Tempo que levou a pessoa atender a ligação da perna A (em segundos), sem arredondamento</td>
+</tr>
+<tr>
+<td>bleg_duration</td>
+<td>Integer</td>
+<td>Tempo que levou a pessoa atender a ligação da perna B (em segundos), sem arredondamento</td>
+</tr>
+<tr>
+<td>cleg_duration</td>
+<td>Integer</td>
+<td>Tempo que levou a pessoa atender a ligação da perna C (em segundos), sem arredondamento</td>
+</tr>
+<tr>
 <td>selected_options</td>
 <td>Array</td>
 <td>Opções do menu digitadas por quem ligou, na ordem em que forem digitadas. Se o atendimento for automático, ou seja, sem menu de opções, o valor retornado será sempre <code class="prettyprint">&quot;1&quot;</code>. Dependendo da configuração do atendimento, é possível digitar mais de uma opção. Exemplo: <code class="prettyprint">[&quot;1&quot;, &quot;3&quot;]</code>.</td>
@@ -516,6 +548,16 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <td>outbound_calls &#65515; billed_duration</td>
 <td>Integer</td>
 <td>Duração cobrada do reencaminhamento (em segundos).</td>
+</tr>
+<tr>
+<td>outbound_calls &#65515; option</td>
+<td>Integer</td>
+<td>opção em que a chamada foi atendida pelo Atendente. Exemple: <code class="prettyprint">6</code>.</td>
+</tr>
+<tr>
+<td>outbound_calls &#65515; queue_id</td>
+<td>Integer</td>
+<td>Código interno da fila de atendimento que atendeu a chamada, sendo: de <code class="prettyprint">0</code> a <code class="prettyprint">9</code> opções diretas do menu, de <code class="prettyprint">21</code> a <code class="prettyprint">99</code> ramais, <code class="prettyprint">1000</code> fora de horário e outros números de opções complementares.</td>
 </tr>
 <tr>
 <td>outbound_calls &#65515; amount</td>

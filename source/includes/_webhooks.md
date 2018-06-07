@@ -253,7 +253,7 @@ Veja exemplos de payloads para todos os tipos de evento na coluna ao lado.
 call_id                | String  | Código identificador da chamada.
 from_number            | String  | Número do telefone de quem ligou para o seu atendimento (ponta A), no formato `código do país` + `DDD` + `telefone`. Exemplo: `"552130409670"`.
 dnis                   | String  | Número do seu atendimento, no formato `código do país` + `número`. Exemplo: `"5508008871565"`.
-dalt_nis                   | String  | Número para o qual foi realizada a chamada originalmente e redirecionada para o dnis, no formato `código do país` + `número`. Exemplo: `"5508008871565"`.
+alt_nis                   | String  | Número para o qual foi realizada a chamada originalmente e redirecionada para o dnis, no formato `código do país` + `número`. Exemplo: `"5508008871565"`.
 direction              | String  | Direção da chamada: `inbound` ou `outbound`. Ex.: quando alguém ligar para o seu atendimento será `inbound` ou quando for uma chamada de alguns dos discadores será `outbound`
 started_at             | DateTime| Data e hora do início da chamada, no formato [ISO8601][iso8601], com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2015-05-07T16:26:05.000-03:00"`.
 status                 | String  | Status da chamada no momento do evento. Os status possíveis são: `newcall`, `in_progress`, `abandoned`, `answered`, `blocked`, `handled` e `missed`.

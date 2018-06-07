@@ -151,6 +151,11 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
     "total_amount": "15.0",
     "billed_duration": 60,
     "inbound_duration": 75,
+    "ura_duration": 50,
+    "dial_duration": 10,
+    "aleg_duration": 10,
+    "bleg_duration": 5,
+    "cleg_duration": 15,
     "direction": "inbound",
     "customer_info": "your_info",
     "selected_options": [
@@ -179,6 +184,8 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
         "extension": 22,
         "duration": 17,
         "billed_duration": 11,
+        "option": 3,
+        "group": 3,
         "amount": "2.75"
       },
       {
@@ -254,6 +261,11 @@ inbound_amount         | Float   | Valor cobrado referente a chamada recebida (e
 total_amount           | Float   | Valor total cobrado pela chamada (incluindo a chamada recebida e os reencaminhamentos).
 billed_duration        | Integer | Duração arredondada da chamada (em segundos) considerada para cobrança.
 inbound_duration       | Integer | Duração real da chamada (em segundos), sem arredondamento.
+ura_duration           | Integer | Duração na ura (em segundos), sem arredondamento.
+dial_duration          | Integer | Tempo de espera na fila (em segundos), sem arredondamento.
+aleg_duration          | Integer | Tempo que levou a pessoa atender a ligação da perna A (em segundos), sem arredondamento
+bleg_duration          | Integer | Tempo que levou a pessoa atender a ligação da perna B (em segundos), sem arredondamento
+cleg_duration          | Integer | Tempo que levou a pessoa atender a ligação da perna C (em segundos), sem arredondamento
 selected_options       | Array   | Opções do menu digitadas por quem ligou, na ordem em que forem digitadas. Se o atendimento for automático, ou seja, sem menu de opções, o valor retornado será sempre `"1"`. Dependendo da configuração do atendimento, é possível digitar mais de uma opção. Exemplo: `["1", "3"]`.
 call_tags              | Array   | Classificações da chamada registradas por quem atendeu a ligação. Exemplo: `[{"code": "70", "description": "Lead"}]`.
 call_tags &#65515; code       | String  | Código que o atendente digitou para efetuar a classificação.
@@ -269,6 +281,8 @@ outbound_calls &#65515; email        | String  | E-mail do atendente que atendeu
 outbound_calls &#65515; extension    | Integer  | Ramal do atendente que atendeu o reencaminhamento. Exemplo: `22`.
 outbound_calls &#65515; duration     | Integer  | Duração real do reencaminhamento (em segundos).
 outbound_calls &#65515; billed_duration | Integer  | Duração cobrada do reencaminhamento (em segundos).
+outbound_calls &#65515; option       | Integer    | opção em que a chamada foi atendida pelo Atendente. Exemple: `6`.
+outbound_calls &#65515; queue_id     | Integer  | Código interno da fila de atendimento que atendeu a chamada, sendo: de `0` a `9` opções diretas do menu, de `21` a `99` ramais, `1000` fora de horário e outros números de opções complementares.
 outbound_calls &#65515; amount       | Float    | Valor cobrado pelo reencaminhamento. Exemplo: `17.28`.
 interactions         | Array   | Informações referente às interações da chamada.
 interactions &#65515; digits       | Integer    | Número digitado na interação por quem ligou para seu atendimento.

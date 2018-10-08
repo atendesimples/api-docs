@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API do Atende Simples</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <link href="../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-      <script src="javascripts/all.js" type="text/javascript"></script>
+      <script src="../javascripts/all.js" type="text/javascript"></script>
 
       <script>
         $(function() {
@@ -18,15 +18,14 @@
       </script>
   </head>
 
-  <body class="index">
+  <body class="general general_index">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" alt="Navbar" />
+        <img src="../images/navbar.png" alt="Navbar" />
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="ruby">ruby</a>
               <a href="#" data-language-name="shell">shell</a>
@@ -60,12 +59,11 @@
 
 <p>As requisições à API respondem com formato <code class="prettyprint">JSON</code>, sendo assim, o cabeçalho das respostas terá sempre <code class="prettyprint">Content-Type: application/json</code>.</p>
 
-        
           <h1 id="webhooks">Webhooks</h1>
 
-<p>Webhooks são integrações <a href="http://app.atendesimples.com/webhooks">configuradas na sua conta</a> que escutarão a certos eventos do Atende Simples. Quando um evento ocorrer, o Atende Simples enviará uma requisição HTTP POST (notificação) para a URL configurada no webhook.</p>
+<p>Webhooks são integrações [configuradas na sua conta] que escutarão a certos eventos das chamadas. Quando um evento ocorrer, enviaremos uma requisição HTTP POST (notificação) para a URL configurada no webhook.</p>
 
-<p>Um <strong>evento</strong> é um <em>ação</em> que acontece com um determinado <strong>recurso</strong> do Atende Simples. Por exemplo, um evento ocorre quando uma <strong><em>chamada</em></strong> é <strong><em>atendida</em></strong>.</p>
+<p>Um <strong>evento</strong> é um <em>ação</em> que acontece com um determinado <strong>recurso</strong>. Por exemplo, um evento ocorre quando uma <strong><em>chamada</em></strong> é <strong><em>atendida</em></strong>.</p>
 
 <p>Dependendo da necessidade da sua integração, os webhooks podem ser úteis para atualizar um sistema de tickets externo, gerar um relatório no seu sistema ou executar tarefas diversas.</p>
 
@@ -79,12 +77,12 @@
 <pre class="highlight plaintext"><code>POST /1d4c5sf1 HTTP/1.1
 
 Host: requestb.in
-User-Agent: AtendeSimples-Robot (staging)
+User-Agent: App-Robot (staging)
 Content-Type: application/json
 X-Hub-Signature: sha1=5780ee6915fcc2d2e6a847d9c9e48f9ebe0159e7
-X-AtendeSimples-Event: ping
-X-AtendeSimples-Request-Id: c11366b2-813e-499c-a673-cbf03c17eed5
-X-AtendeSimples-Environment: staging
+X-App-Event: ping
+X-App-Request-Id: c11366b2-813e-499c-a673-cbf03c17eed5
+X-App-Environment: staging
 
 {
   "event_code": "ping",
@@ -107,15 +105,15 @@ X-AtendeSimples-Environment: staging
 </tr>
 </thead><tbody>
 <tr>
-<td>X-AtendeSimples-Event</td>
+<td>X-App-Event</td>
 <td><a href="#eventos">Código do evento</a> que gerou a requisição.</td>
 </tr>
 <tr>
-<td>X-AtendeSimples-Request-Id</td>
+<td>X-App-Request-Id</td>
 <td>Código identificador da requisição, no formato <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">UUID</a>.</td>
 </tr>
 <tr>
-<td>X-AtendeSimples-Environment</td>
+<td>X-App-Environment</td>
 <td>Ambiente de onde a requisição foi disparada (<code class="prettyprint">production</code> ou <code class="prettyprint">staging</code>).</td>
 </tr>
 <tr>
@@ -124,7 +122,7 @@ X-AtendeSimples-Environment: staging
 </tr>
 <tr>
 <td>User-Agent</td>
-<td><code class="prettyprint">AtendeSimples-Robot</code> + o ambiente que originou a requisição.</td>
+<td><code class="prettyprint">App-Robot</code> + o ambiente que originou a requisição.</td>
 </tr>
 <tr>
 <td>Content-Type</td>
@@ -157,7 +155,7 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 
 <h2 id="eventos">Eventos</h2>
 
-<p>Todo evento possui um código que identifica o seu tipo. Esses códigos são formatados no padrão <code class="prettyprint">resource.event</code>, sendo <code class="prettyprint">resource</code> o nome do recurso e <code class="prettyprint">event</code> o nome do evento disparado. Na tabela abaixo estão listados todos os tipos de eventos do Atende Simples:</p>
+<p>Todo evento possui um código que identifica o seu tipo. Esses códigos são formatados no padrão <code class="prettyprint">resource.event</code>, sendo <code class="prettyprint">resource</code> o nome do recurso e <code class="prettyprint">event</code> o nome do evento disparado. Na tabela abaixo estão listados todos os tipos de eventos:</p>
 
 <table><thead>
 <tr>
@@ -201,7 +199,7 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 
 <p>Ao configurar um webhook, você seleciona quais desses eventos ele escutará. Marcar somente os eventos específicos que você precisa tratar pode ajudar a limitar a quantidade de requisições HTTP que a sua aplicação receberá. Somente os eventos selecionados farão com que o webhook dispare requisições.</p>
 
-<p><strong>Nota:</strong> Independentemente de existir webhooks configurados ou não, o Atende Simples registra todos os eventos internamente (com exceção do <a href="#evento-ping">ping</a>) e os disponibiliza no <a href="http://app.atendesimples.com/webhook/event_logs">Log de eventos</a> por um tempo limitado.</p>
+<p><strong>Nota:</strong> Independentemente de existir webhooks configurados ou não,registramos todos os eventos internamente (com exceção do <a href="#evento-ping">ping</a>) e os disponibiliza no <a href="https://app.atendesimples.com/webhook/event_logs">Log de eventos</a> por um tempo limitado.</p>
 
 <h3 id="evento-ping">Evento Ping</h3>
 
@@ -211,7 +209,7 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 
 <h3 id="eventos-coringa-(wildcard)">Eventos Coringa (Wildcard)</h3>
 
-<p>Eventos coringa (wildcard) não são eventos que acontecem no Atende Simples, são apenas representações de um conjunto de eventos que um webhook pode escutar. Os eventos coringa disponíveis são:</p>
+<p>Eventos coringa (wildcard) não são eventos que acontecem, são apenas representações de um conjunto de eventos que um webhook pode escutar. Os eventos coringa disponíveis são:</p>
 
 <table><thead>
 <tr>
@@ -221,7 +219,7 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 </thead><tbody>
 <tr>
 <td>*</td>
-<td>Todos os eventos do Atende Simples, inclusive os que ainda surgirão.</td>
+<td>Todos os eventos, inclusive os que ainda surgirão.</td>
 </tr>
 <tr>
 <td>call.*</td>
@@ -268,8 +266,6 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"answered"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status_details"</span><span class="p">:</span><span class="w"> </span><span class="s2">"conference"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"business_hours"</span><span class="p">:</span><span class="w"> </span><span class="s2">"worktime"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"inbound_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15.0"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15.0"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"billed_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
     </span><span class="s2">"inbound_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ura_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
@@ -306,28 +302,25 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
         </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
         </span><span class="s2">"billed_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
         </span><span class="s2">"option"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.75"</span><span class="w">
+        </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-01T01:15:00.000-02:00"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5521988221010"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"André"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"andre@atendesimples.com.br"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"andre@exemplo.com.br"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"extension"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
         </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">34</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"billed_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7.5"</span><span class="w">
+        </span><span class="s2">"billed_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-01T01:19:00.000-02:00"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"552130992121"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joyce"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joyce@atendesimples.com.br"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joyce@exemplo.com.br"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"extension"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
         </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"billed_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.75"</span><span class="w">
+        </span><span class="s2">"billed_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"interactions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -404,12 +397,12 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <tr>
 <td>dnis</td>
 <td>String</td>
-<td>Número do seu atendimento, no formato <code class="prettyprint">código do país</code> + <code class="prettyprint">número</code>. Exemplo: <code class="prettyprint">&quot;5508008871565&quot;</code>.</td>
+<td>Número do seu atendimento, no formato <code class="prettyprint">código do país</code> + <code class="prettyprint">número</code>. Exemplo: <code class="prettyprint">&quot;5508008871898&quot;</code>.</td>
 </tr>
 <tr>
-<td>dalt_nis</td>
+<td>alt_nis</td>
 <td>String</td>
-<td>Número para o qual foi realizada a chamada originalmente e redirecionada para o dnis, no formato <code class="prettyprint">código do país</code> + <code class="prettyprint">número</code>. Exemplo: <code class="prettyprint">&quot;5508008871565&quot;</code>.</td>
+<td>Número para o qual foi realizada a chamada originalmente e redirecionada para o dnis, no formato <code class="prettyprint">código do país</code> + <code class="prettyprint">número</code>. Exemplo: <code class="prettyprint">&quot;5508008871898&quot;</code>.</td>
 </tr>
 <tr>
 <td>direction</td>
@@ -435,21 +428,6 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <td>business_hours</td>
 <td>String</td>
 <td>Identifica se a chamada ocorreu dentro ou fora do horário de atendimento configurado. Os valores possíveis são: <code class="prettyprint">worktime</code> e <code class="prettyprint">out_of_worktime</code>.</td>
-</tr>
-<tr>
-<td>inbound_amount</td>
-<td>Float</td>
-<td>Valor cobrado referente a chamada recebida (entrante).</td>
-</tr>
-<tr>
-<td>total_amount</td>
-<td>Float</td>
-<td>Valor total cobrado pela chamada (incluindo a chamada recebida e os reencaminhamentos).</td>
-</tr>
-<tr>
-<td>billed_duration</td>
-<td>Integer</td>
-<td>Duração arredondada da chamada (em segundos) considerada para cobrança.</td>
 </tr>
 <tr>
 <td>inbound_duration</td>
@@ -552,11 +530,6 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <td>Duração real do reencaminhamento (em segundos).</td>
 </tr>
 <tr>
-<td>outbound_calls &#65515; billed_duration</td>
-<td>Integer</td>
-<td>Duração cobrada do reencaminhamento (em segundos).</td>
-</tr>
-<tr>
 <td>outbound_calls &#65515; option</td>
 <td>Integer</td>
 <td>opção em que a chamada foi atendida pelo Atendente. Exemple: <code class="prettyprint">6</code>.</td>
@@ -565,11 +538,6 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <td>outbound_calls &#65515; queue_id</td>
 <td>Integer</td>
 <td>Código interno da fila de atendimento que atendeu a chamada, sendo: de <code class="prettyprint">0</code> a <code class="prettyprint">9</code> opções diretas do menu, de <code class="prettyprint">21</code> a <code class="prettyprint">99</code> ramais, <code class="prettyprint">1000</code> fora de horário e outros números de opções complementares.</td>
-</tr>
-<tr>
-<td>outbound_calls &#65515; amount</td>
-<td>Float</td>
-<td>Valor cobrado pelo reencaminhamento. Exemplo: <code class="prettyprint">17.28</code>.</td>
 </tr>
 <tr>
 <td>interactions</td>

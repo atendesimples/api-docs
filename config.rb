@@ -1,3 +1,15 @@
+# frozen_string_literal: true
+
+# Activate the syntax highlighter
+activate :syntax
+
+# Pretty URLs based directory
+activate :directory_indexes
+
+# Dymanic Routes included any files
+page '/general/*', layout: :general
+page '/algar/*', layout: :algar
+
 # Markdown
 set :markdown_engine, :redcarpet
 set :markdown,
@@ -15,8 +27,9 @@ set :js_dir, 'javascripts'
 set :images_dir, 'images'
 set :fonts_dir, 'fonts'
 
-# Activate the syntax highlighter
-activate :syntax
+configure :development do
+  activate :livereload
+end
 
 # Github pages require relative links
 activate :relative_assets

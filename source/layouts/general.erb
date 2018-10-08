@@ -33,7 +33,6 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
       <% if language_tabs %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -65,9 +64,8 @@
       <div class="dark-box"></div>
       <div class="content">
         <%= yield %>
-        
         <% current_page.data.includes && current_page.data.includes.each do |include| %>
-          <%= partial "default/partials/#{include}" %>
+          <%= partial "general/partials/#{include}" %>
         <% end %>
       </div>
       <div class="dark-box">

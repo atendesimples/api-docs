@@ -30,6 +30,13 @@ Para acessar a documentação offline, instale o Ruby 2.2.2 e siga as seguintes 
 
 1. Acesse a documentação no seu browser via [http://localhost:4567/](http://localhost:4567/)
 
+Rotas/Layouts disponíveis
+---------------------------
+
+* /
+* /general
+* /algar
+
 
 Compilando o código
 ---------------------------

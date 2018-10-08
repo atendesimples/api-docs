@@ -1,5 +1,5 @@
 ---
-title: API do Atende Simples
+title: API Algar Digital
 
 language_tabs:
 - ruby

@@ -297,7 +297,7 @@ ani_lat                | String  | Latitude do telefone de quem ligou
 ani_long               | String  | Longitude do telefone de quem ligou
 call_terminated        | String  | Perna que desligou a chamada ("Plataforma", "A" ou "B")
 dnis                   | String  | Número do seu atendimento, no formato `código do país` + `número`. Exemplo: `"5508008871898"`.
-alt_dnis                | String  | Número para o qual foi realizada a chamada originalmente e redirecionada para o dnis, no formato `código do país` + `número`. Exemplo: `"5508008871898"`.
+alt_dnis               | String  | Número para o qual foi realizada a chamada originalmente e redirecionada para o dnis, no formato `código do país` + `número`. Exemplo: `"5508008871898"`.
 number_name            | String  | Nome definido para o número que a chamada foi realizada, os nomes para cada número podem ser configurados clicando em "Opções de conta" e depois no menu "Números"            
 number_host            | String  | Host definido para o número que a chamada foi realizada, os hosts para cada número podem ser configurados clicando em "Opções de conta" e depois no menu "Números"
 number_info1           | String  | Valor definido para o número que a chamada foi realizada, os valores para cada número podem ser configurados clicando em "Opções de conta" e depois no menu "Números", no campo "Info 1"

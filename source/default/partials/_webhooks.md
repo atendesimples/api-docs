@@ -142,22 +142,54 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
   "call": {
     "call_id": "1003",
     "from_number": "552122334466",
+    "ani_prefix":"21",
+    "ani_city":"Rio de Janeiro",
+    "ani_state":"Rio de Janeiro",
+    "ani_uf":"RJ",
+    "ani_kind":"cellphone",
+    "ani_provider":"Claro",
+    "ani_lat":"9999",
+    "ani_long":"8888",
+    "call_terminated":"A",
     "dnis": "5",
     "alt_dnis": "6",
+    "number_name": "Number 1",
+    "number_host": "Number host",
+    "number_info1": "Number info 1",
+    "number_info2": "Number info 2",
+    "number_info3": "Number info 3",
     "started_at": "2015-01-01T01:11:00.000-02:00",
     "status": "answered",
     "status_details": "conference",
+    "block_reason":"blocked_by_user_configuration",
+    "my_status_code":"1",
+    "my_status_name":"My Status Name",
+    "my_status_complement_1":"My Status Complement 1",
+    "my_status_complement_2":"My Status Complement 2",
+    "my_status_info_1":"My Status Info 1",
+    "my_status_info_2":"My Status Info 2",
+    "my_status_info_3":"My Status Info 3",
+    "my_kpi":["tag1","tag2"],
+    "result_leg_a":"error",
+    "result_leg_b":"error",
+    "leg_a_type":"client",
+    "attendant_name":"Attendant Name",
+    "attendant_email":"foo@bar.com",
+    "attendant_number":"552122333333",
+    "attendant_extension_number":"30",
     "business_hours": "worktime",
+    "business_hours_complement":"Holiday Name",
     "inbound_amount": "15.0",
     "total_amount": "15.0",
     "billed_duration": 60,
     "inbound_duration": 75,
     "ura_duration": 50,
     "dial_duration": 10,
-    "aleg_duration": 10,
-    "bleg_duration": 5,
-    "cleg_duration": 15,
+    "ring_duration_a": 10,
+    "ring_duration_b": 5,
+    "ring_duration_c": 15,
     "direction": "inbound",
+    "kind":"default",
     "customer_info": "your_info",
     "selected_options": [
       "1",
@@ -222,6 +254,14 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
         "validation_status": "error"
       }
     ],
+    "post_attendances": [
+      {
+        "digits":"8",
+        "status": "1",
+        "name": "Post Attendance 9",
+        "selected_option": "9"
+      }
+    ],
     "word_spottings": [
       {
         "word": "procon",
@@ -252,23 +292,58 @@ Veja exemplos de payloads para todos os tipos de evento na coluna ao lado.
 -----------------------|---------|-----------------------------------------------
 call_id                | String  | Código identificador da chamada.
 from_number            | String  | Número do telefone de quem ligou para o seu atendimento (ponta A), no formato `código do país` + `DDD` + `telefone`. Exemplo: `"552130409670"`.
+ani_prefix             | String  | DDD do telefone de quem ligou
+ani_city               | String  | Cidade do telefone de quem ligou
+ani_state              | String  | Nome do estado do telefone de quem ligou
+ani_uf                 | String  | Siglas do estado do telefone de quem ligou, exemplo: "SP"
+ani_kind               | String  | Tipo do telefone de quem ligou (`"cellphone"`, `"linephone"` ou `"unknown"`)
+ani_provider           | String  | Operadora do telefone de quem ligou
+ani_lat                | String  | Latitude do telefone de quem ligou
+ani_long               | String  | Longitude do telefone de quem ligou
+call_terminated        | String  | Perna que desligou a chamada ("Plataforma", "A" ou "B")
 dnis                   | String  | Número do seu atendimento, no formato `código do país` + `número`. Exemplo: `"5508008871565"`.
-dalt_nis                   | String  | Número para o qual foi realizada a chamada originalmente e redirecionada para o dnis, no formato `código do país` + `número`. Exemplo: `"5508008871565"`.
+alt_dnis                   | String  | Número para o qual foi realizada a chamada originalmente e redirecionada para o dnis, no 
+formato `código do país` + `número`. Exemplo: `"5508008871898"`.
+number_name            | String  | Nome definido para o número que a chamada foi realizada, os nomes para cada número podem ser configurados clicando em "Opções de conta" e depois no menu "Números"            
+number_host            | String  | Host definido para o número que a chamada foi realizada, os hosts para cada número podem ser configurados clicando em "Opções de conta" e depois no menu "Números"
+number_info1           | String  | Valor definido para o número que a chamada foi realizada, os valores para cada número podem ser configurados clicando em "Opções de conta" e depois no menu "Números", no campo "Info 1"
+number_info2           | String  | Valor definido para o número que a chamada foi realizada, os valores para cada número podem ser configurados clicando em "Opções de conta" e depois no menu "Números", no campo "Info 2"
+number_info3           | String  | Valor definido para o número que a chamada foi realizada, os valores para cada número podem ser configurados clicando em "Opções de conta" e depois no menu "Números", no campo "Info 3"
 direction              | String  | Direção da chamada: `inbound` ou `outbound`. Ex.: quando alguém ligar para o seu atendimento será `inbound` ou quando for uma chamada de alguns dos discadores será `outbound`
 started_at             | DateTime| Data e hora do início da chamada, no formato [ISO8601][iso8601], com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2015-05-07T16:26:05.000-03:00"`.
 status                 | String  | Status da chamada no momento do evento. Os status possíveis são: `newcall`, `in_progress`, `abandoned`, `answered`, `blocked`, `handled` e `missed`.
 status_details         | String  | Complemento do status. Pode vir com o nome do atendente que atendeu a ligação, uma mensagem personalizada ou com a mensagem `"Desligada"`.
+block_reason           | String  | Motivo da chamada ter sido bloqueada
+my_status_code         | String  | Código do Meu Status aplicado na chamada
+my_status_name         | String  | Nome do Meu Status aplicado na chamada
+my_status_complement_1 | String  | Complemento 1 do Meu Status aplicado na chamada
+my_status_complement_2 | String  | Complemento 2 do Meu Status aplicado na chamada
+my_status_info_1       | String  | Info 1 do Meu Status aplicado na chamada
+my_status_info_2       | String  | Info 2 do Meu Status aplicado na chamada
+my_status_info_3       | String  | Info 3 do Meu Status aplicado na chamada
+my_kpi                 | Array  | Nomes das tags aplicadas na chamada
+result_leg_a           | String  | Resultado da perna A (`"answered"`, `"error"`, `"others"`, `"busy_or_unavailable"`, `"answered_machine"`, `"not_answered"` ou `"absent"`)
+result_leg_b           | String  | Resultado da perna B (`"answered"`, `"error"`, `"others"`, `"busy_or_unavailable"`, `"canceled"`, `"answered_machine"`, `"not_answered"` ou `"absent"`)
+leg_a_type             | String  | Tipo de perna A (`"attendant"` ou `"client"`)
+attendant_name         | String  | Nome do Atendente que atendeu a ligação
+attendant_email        | String  | Email do Atendente que atendeu a ligação
+attendant_number       | String  | Telefone do Atendente que atendeu a ligação
+attendant_extension_number | String  | Ramal do Atendente que atendeu a ligação
+voicemail              | Boolean  | Se tem caixa postal
+voicemail              | Boolean  | Se tem caixa postal
 business_hours         | String  | Identifica se a chamada ocorreu dentro ou fora do horário de atendimento configurado. Os valores possíveis são: `worktime` e `out_of_worktime`.
+business_hours_complement | String  | Complemento do horário, pode vir com o nome do feriado em que a chamada foi efetuada
 inbound_amount         | Float   | Valor cobrado referente a chamada recebida (entrante).
 total_amount           | Float   | Valor total cobrado pela chamada (incluindo a chamada recebida e os reencaminhamentos).
 billed_duration        | Integer | Duração arredondada da chamada (em segundos) considerada para cobrança.
 inbound_duration       | Integer | Duração real da chamada (em segundos), sem arredondamento.
 ura_duration           | Integer | Duração na ura (em segundos), sem arredondamento.
 dial_duration          | Integer | Tempo de espera na fila (em segundos), sem arredondamento.
-aleg_duration          | Integer | Tempo que levou a pessoa atender a ligação da perna A (em segundos), sem arredondamento
-bleg_duration          | Integer | Tempo que levou a pessoa atender a ligação da perna B (em segundos), sem arredondamento
-cleg_duration          | Integer | Tempo que levou a pessoa atender a ligação da perna C (em segundos), sem arredondamento
+ring_duration_a        | Integer | Tempo que levou a pessoa atender a ligação da perna A (em segundos), sem arredondamento
+ring_duration_b        | Integer | Tempo que levou a pessoa atender a ligação da perna B (em segundos), sem arredondamento
+ring_duration_c        | Integer | Tempo que levou a pessoa atender a ligação da perna C (em segundos), sem arredondamento
 selected_options       | Array   | Opções do menu digitadas por quem ligou, na ordem em que forem digitadas. Se o atendimento for automático, ou seja, sem menu de opções, o valor retornado será sempre `"1"`. Dependendo da configuração do atendimento, é possível digitar mais de uma opção. Exemplo: `["1", "3"]`.
+kind                   | String  | Tipo da configuração usada na ligação
 call_tags              | Array   | Classificações da chamada registradas por quem atendeu a ligação. Exemplo: `[{"code": "70", "description": "Lead"}]`.
 call_tags &#65515; code       | String  | Código que o atendente digitou para efetuar a classificação.
 call_tags &#65515; description| String  | Descrição referente ao código digitado na classificação.
@@ -290,6 +365,7 @@ interactions         | Array   | Informações referente às interações da cha
 interactions &#65515; digits       | Integer    | Número digitado na interação por quem ligou para seu atendimento.
 interactions &#65515; selected_option | Integer | Opção de interação do menu digitada por quem ligou.
 interactions &#65515; validation_status | String | Status de validação da interação. Valores possíveis: `"ok"` ou `"error"`.
+post_attendances     | Array   | Informações sobre as pesquisas de pós atendimento
 word_spottings       | Array   | Informações referente ao monitoramento de termos.
 word\_spottings &#65515; word         | String  | Termo identificado durante a chamada. Exemplo: `"procon"`.
 word\_spottings &#65515; word_group   | String  | Grupo ao qual o termo pertence. Exemplo: `"reclamação"`.

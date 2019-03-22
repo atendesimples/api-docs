@@ -488,73 +488,319 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <tr>
 <td>alt_dnis</td>
 <td>String</td>
-<td>Número para o qual foi realizada a chamada originalmente e redirecionada para o dnis, no</td>
+<td>Número para o qual foi realizada a chamada originalmente e redirecionada para o dnis, no formato <code class="prettyprint">código do país</code> + <code class="prettyprint">número</code>. Exemplo: <code class="prettyprint">&quot;5508008871898&quot;</code>.</td>
+</tr>
+<tr>
+<td>number_name</td>
+<td>String</td>
+<td>Nome definido para o número que a chamada foi realizada, os nomes para cada número podem ser configurados clicando em &ldquo;Opções de conta&rdquo; e depois no menu &ldquo;Números&rdquo;</td>
+</tr>
+<tr>
+<td>number_host</td>
+<td>String</td>
+<td>Host definido para o número que a chamada foi realizada, os hosts para cada número podem ser configurados clicando em &ldquo;Opções de conta&rdquo; e depois no menu &ldquo;Números&rdquo;</td>
+</tr>
+<tr>
+<td>number_info1</td>
+<td>String</td>
+<td>Valor definido para o número que a chamada foi realizada, os valores para cada número podem ser configurados clicando em &ldquo;Opções de conta&rdquo; e depois no menu &ldquo;Números&rdquo;, no campo &ldquo;Info 1&rdquo;</td>
+</tr>
+<tr>
+<td>number_info2</td>
+<td>String</td>
+<td>Valor definido para o número que a chamada foi realizada, os valores para cada número podem ser configurados clicando em &ldquo;Opções de conta&rdquo; e depois no menu &ldquo;Números&rdquo;, no campo &ldquo;Info 2&rdquo;</td>
+</tr>
+<tr>
+<td>number_info3</td>
+<td>String</td>
+<td>Valor definido para o número que a chamada foi realizada, os valores para cada número podem ser configurados clicando em &ldquo;Opções de conta&rdquo; e depois no menu &ldquo;Números&rdquo;, no campo &ldquo;Info 3&rdquo;</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>String</td>
+<td>Direção da chamada: <code class="prettyprint">inbound</code> ou <code class="prettyprint">outbound</code>. Ex.: quando alguém ligar para o seu atendimento será <code class="prettyprint">inbound</code> ou quando for uma chamada de alguns dos discadores será <code class="prettyprint">outbound</code></td>
+</tr>
+<tr>
+<td>started_at</td>
+<td>DateTime</td>
+<td>Data e hora do início da chamada, no formato <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a>, com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: <code class="prettyprint">&quot;2015-05-07T16:26:05.000-03:00&quot;</code>.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>Status da chamada no momento do evento. Os status possíveis são: <code class="prettyprint">newcall</code>, <code class="prettyprint">in_progress</code>, <code class="prettyprint">abandoned</code>, <code class="prettyprint">answered</code>, <code class="prettyprint">blocked</code>, <code class="prettyprint">handled</code> e <code class="prettyprint">missed</code>.</td>
+</tr>
+<tr>
+<td>status_details</td>
+<td>String</td>
+<td>Complemento do status. Pode vir com o nome do atendente que atendeu a ligação, uma mensagem personalizada ou com a mensagem <code class="prettyprint">&quot;Desligada&quot;</code>.</td>
+</tr>
+<tr>
+<td>block_reason</td>
+<td>String</td>
+<td>Motivo da chamada ter sido bloqueada</td>
+</tr>
+<tr>
+<td>my_status_code</td>
+<td>String</td>
+<td>Código do Meu Status aplicado na chamada</td>
+</tr>
+<tr>
+<td>my_status_name</td>
+<td>String</td>
+<td>Nome do Meu Status aplicado na chamada</td>
+</tr>
+<tr>
+<td>my_status_complement_1</td>
+<td>String</td>
+<td>Complemento 1 do Meu Status aplicado na chamada</td>
+</tr>
+<tr>
+<td>my_status_complement_2</td>
+<td>String</td>
+<td>Complemento 2 do Meu Status aplicado na chamada</td>
+</tr>
+<tr>
+<td>my_status_info_1</td>
+<td>String</td>
+<td>Info 1 do Meu Status aplicado na chamada</td>
+</tr>
+<tr>
+<td>my_status_info_2</td>
+<td>String</td>
+<td>Info 2 do Meu Status aplicado na chamada</td>
+</tr>
+<tr>
+<td>my_status_info_3</td>
+<td>String</td>
+<td>Info 3 do Meu Status aplicado na chamada</td>
+</tr>
+<tr>
+<td>my_kpi</td>
+<td>Array</td>
+<td>Nomes das tags aplicadas na chamada</td>
+</tr>
+<tr>
+<td>result_leg_a</td>
+<td>String</td>
+<td>Resultado da perna A (<code class="prettyprint">&quot;answered&quot;</code>, <code class="prettyprint">&quot;error&quot;</code>, <code class="prettyprint">&quot;others&quot;</code>, <code class="prettyprint">&quot;busy_or_unavailable&quot;</code>, <code class="prettyprint">&quot;answered_machine&quot;</code>, <code class="prettyprint">&quot;not_answered&quot;</code> ou <code class="prettyprint">&quot;absent&quot;</code>)</td>
+</tr>
+<tr>
+<td>result_leg_b</td>
+<td>String</td>
+<td>Resultado da perna B (<code class="prettyprint">&quot;answered&quot;</code>, <code class="prettyprint">&quot;error&quot;</code>, <code class="prettyprint">&quot;others&quot;</code>, <code class="prettyprint">&quot;busy_or_unavailable&quot;</code>, <code class="prettyprint">&quot;canceled&quot;</code>, <code class="prettyprint">&quot;answered_machine&quot;</code>, <code class="prettyprint">&quot;not_answered&quot;</code> ou <code class="prettyprint">&quot;absent&quot;</code>)</td>
+</tr>
+<tr>
+<td>leg_a_type</td>
+<td>String</td>
+<td>Tipo de perna A (<code class="prettyprint">&quot;attendant&quot;</code> ou <code class="prettyprint">&quot;client&quot;</code>)</td>
+</tr>
+<tr>
+<td>attendant_name</td>
+<td>String</td>
+<td>Nome do Atendente que atendeu a ligação</td>
+</tr>
+<tr>
+<td>attendant_email</td>
+<td>String</td>
+<td>Email do Atendente que atendeu a ligação</td>
+</tr>
+<tr>
+<td>attendant_number</td>
+<td>String</td>
+<td>Telefone do Atendente que atendeu a ligação</td>
+</tr>
+<tr>
+<td>attendant_extension_number</td>
+<td>String</td>
+<td>Ramal do Atendente que atendeu a ligação</td>
+</tr>
+<tr>
+<td>voicemail</td>
+<td>Boolean</td>
+<td>Se tem caixa postal</td>
+</tr>
+<tr>
+<td>voicemail</td>
+<td>Boolean</td>
+<td>Se tem caixa postal</td>
+</tr>
+<tr>
+<td>business_hours</td>
+<td>String</td>
+<td>Identifica se a chamada ocorreu dentro ou fora do horário de atendimento configurado. Os valores possíveis são: <code class="prettyprint">worktime</code> e <code class="prettyprint">out_of_worktime</code>.</td>
+</tr>
+<tr>
+<td>business_hours_complement</td>
+<td>String</td>
+<td>Complemento do horário, pode vir com o nome do feriado em que a chamada foi efetuada</td>
+</tr>
+<tr>
+<td>inbound_duration</td>
+<td>Integer</td>
+<td>Duração real da chamada (em segundos), sem arredondamento.</td>
+</tr>
+<tr>
+<td>ura_duration</td>
+<td>Integer</td>
+<td>Duração na ura (em segundos), sem arredondamento.</td>
+</tr>
+<tr>
+<td>dial_duration</td>
+<td>Integer</td>
+<td>Tempo de espera na fila (em segundos), sem arredondamento.</td>
+</tr>
+<tr>
+<td>ring_duration_a</td>
+<td>Integer</td>
+<td>Tempo que levou a pessoa atender a ligação da perna A (em segundos), sem arredondamento</td>
+</tr>
+<tr>
+<td>ring_duration_b</td>
+<td>Integer</td>
+<td>Tempo que levou a pessoa atender a ligação da perna B (em segundos), sem arredondamento</td>
+</tr>
+<tr>
+<td>ring_duration_c</td>
+<td>Integer</td>
+<td>Tempo que levou a pessoa atender a ligação da perna C (em segundos), sem arredondamento</td>
+</tr>
+<tr>
+<td>selected_options</td>
+<td>Array</td>
+<td>Opções do menu digitadas por quem ligou, na ordem em que forem digitadas. Se o atendimento for automático, ou seja, sem menu de opções, o valor retornado será sempre <code class="prettyprint">&quot;1&quot;</code>. Dependendo da configuração do atendimento, é possível digitar mais de uma opção. Exemplo: <code class="prettyprint">[&quot;1&quot;, &quot;3&quot;]</code>.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>String</td>
+<td>Tipo da configuração usada na ligação</td>
+</tr>
+<tr>
+<td>call_tags</td>
+<td>Array</td>
+<td>Classificações da chamada registradas por quem atendeu a ligação. Exemplo: <code class="prettyprint">[{&quot;code&quot;: &quot;70&quot;, &quot;description&quot;: &quot;Lead&quot;}]</code>.</td>
+</tr>
+<tr>
+<td>call_tags &#65515; code</td>
+<td>String</td>
+<td>Código que o atendente digitou para efetuar a classificação.</td>
+</tr>
+<tr>
+<td>call_tags &#65515; description</td>
+<td>String</td>
+<td>Descrição referente ao código digitado na classificação.</td>
+</tr>
+<tr>
+<td>audio_url</td>
+<td>String</td>
+<td>Link para o arquivo com a gravação da conversa ou áudio da caixa postal. Exemplo: <code class="prettyprint">&quot;https://app.atendimento.algardigital.com.br/public/audios/98b2ec022a7f051a84e65b&quot;</code>.</td>
+</tr>
+<tr>
+<td>zendesk_ticket_id</td>
+<td>String</td>
+<td>Código identificador do ticket do Zendesk associado à chamada.</td>
+</tr>
+<tr>
+<td>customer_info</td>
+<td>String</td>
+<td>Informação por chamada enviada por sua API na requisição de uma chamada sainte, na resposta de uma pré-chamada ou na resposta de uma interação. Caso não tenha sido enviada essa informação, o campo ficará em branco. Se durante uma chamada forem enviados diferentes customer_info, ficará sempre armazenado a última string.</td>
+</tr>
+<tr>
+<td>outbound_calls</td>
+<td>Array</td>
+<td>Informações referente aos reencaminhamentos da chamada (pode haver mais de um). Só serão apresentados os reencaminhamentos que forem atendidos.</td>
+</tr>
+<tr>
+<td>outbound_calls &#65515; started_at</td>
+<td>DateTime</td>
+<td>Data e hora do reencaminhamento, no formato <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a>, com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: <code class="prettyprint">&quot;2015-05-07T17:26:05.000-03:00&quot;</code>.</td>
+</tr>
+<tr>
+<td>outbound_calls &#65515; phone_number</td>
+<td>String</td>
+<td>Número do telefone que atendeu o reencaminhamento. Exemplo: <code class="prettyprint">&quot;5511999999999&quot;</code>.</td>
+</tr>
+<tr>
+<td>outbound_calls &#65515; name</td>
+<td>String</td>
+<td>Nome do atendente que atendeu o reencaminhamento. Exemplo: <code class="prettyprint">&quot;João&quot;</code>.</td>
+</tr>
+<tr>
+<td>outbound_calls &#65515; email</td>
+<td>String</td>
+<td>E-mail do atendente que atendeu o reencaminhamento. Exemplo: <code class="prettyprint">joao@suaempresa.com</code>.</td>
+</tr>
+<tr>
+<td>outbound_calls &#65515; extension</td>
+<td>Integer</td>
+<td>Ramal do atendente que atendeu o reencaminhamento. Exemplo: <code class="prettyprint">22</code>.</td>
+</tr>
+<tr>
+<td>outbound_calls &#65515; duration</td>
+<td>Integer</td>
+<td>Duração real do reencaminhamento (em segundos).</td>
+</tr>
+<tr>
+<td>outbound_calls &#65515; option</td>
+<td>Integer</td>
+<td>opção em que a chamada foi atendida pelo Atendente. Exemple: <code class="prettyprint">6</code>.</td>
+</tr>
+<tr>
+<td>outbound_calls &#65515; queue_id</td>
+<td>Integer</td>
+<td>Código interno da fila de atendimento que atendeu a chamada, sendo: de <code class="prettyprint">0</code> a <code class="prettyprint">9</code> opções diretas do menu, de <code class="prettyprint">21</code> a <code class="prettyprint">99</code> ramais, <code class="prettyprint">1000</code> fora de horário e outros números de opções complementares.</td>
+</tr>
+<tr>
+<td>interactions</td>
+<td>Array</td>
+<td>Informações referente às interações da chamada.</td>
+</tr>
+<tr>
+<td>interactions &#65515; digits</td>
+<td>Integer</td>
+<td>Número digitado na interação por quem ligou para seu atendimento.</td>
+</tr>
+<tr>
+<td>interactions &#65515; selected_option</td>
+<td>Integer</td>
+<td>Opção de interação do menu digitada por quem ligou.</td>
+</tr>
+<tr>
+<td>interactions &#65515; validation_status</td>
+<td>String</td>
+<td>Status de validação da interação. Valores possíveis: <code class="prettyprint">&quot;ok&quot;</code> ou <code class="prettyprint">&quot;error&quot;</code>.</td>
+</tr>
+<tr>
+<td>post_attendances</td>
+<td>Array</td>
+<td>Informações sobre as pesquisas de pós atendimento</td>
+</tr>
+<tr>
+<td>word_spottings</td>
+<td>Array</td>
+<td>Informações referente ao monitoramento de termos.</td>
+</tr>
+<tr>
+<td>word_spottings &#65515; word</td>
+<td>String</td>
+<td>Termo identificado durante a chamada. Exemplo: <code class="prettyprint">&quot;procon&quot;</code>.</td>
+</tr>
+<tr>
+<td>word_spottings &#65515; word_group</td>
+<td>String</td>
+<td>Grupo ao qual o termo pertence. Exemplo: <code class="prettyprint">&quot;reclamação&quot;</code>.</td>
+</tr>
+<tr>
+<td>word_spottings &#65515; score</td>
+<td>Integer</td>
+<td>Porcentagem de certeza de que o termo identificado na chamada é realmente o que foi configurado. Exemplo: 85.</td>
+</tr>
+<tr>
+<td>word_spottings &#65515; occurred_at</td>
+<td>Time</td>
+<td>Tempo da chamada em que o termo foi identificado. Sendo uma representação de tempo, a data virá sempre &ldquo;zerada&rdquo;, e deverá ser desconsiderada. Exemplo: <code class="prettyprint">&quot;1900-01-01T00:01:48.159+00:00&quot;</code> se refere ao tempo <code class="prettyprint">1m, 48s e 159ms</code> da chamada.</td>
 </tr>
 </tbody></table>
-
-<p>formato <code class="prettyprint">código do país</code> + <code class="prettyprint">número</code>. Exemplo: <code class="prettyprint">&quot;5508008871898&quot;</code>.
-number_name            | String  | Nome definido para o número que a chamada foi realizada, os nomes para cada número podem ser configurados clicando em &ldquo;Opções de conta&rdquo; e depois no menu &ldquo;Números&rdquo;<br>
-number_host            | String  | Host definido para o número que a chamada foi realizada, os hosts para cada número podem ser configurados clicando em &ldquo;Opções de conta&rdquo; e depois no menu &ldquo;Números&rdquo;
-number_info1           | String  | Valor definido para o número que a chamada foi realizada, os valores para cada número podem ser configurados clicando em &ldquo;Opções de conta&rdquo; e depois no menu &ldquo;Números&rdquo;, no campo &ldquo;Info 1&rdquo;
-number_info2           | String  | Valor definido para o número que a chamada foi realizada, os valores para cada número podem ser configurados clicando em &ldquo;Opções de conta&rdquo; e depois no menu &ldquo;Números&rdquo;, no campo &ldquo;Info 2&rdquo;
-number_info3           | String  | Valor definido para o número que a chamada foi realizada, os valores para cada número podem ser configurados clicando em &ldquo;Opções de conta&rdquo; e depois no menu &ldquo;Números&rdquo;, no campo &ldquo;Info 3&rdquo;
-direction              | String  | Direção da chamada: <code class="prettyprint">inbound</code> ou <code class="prettyprint">outbound</code>. Ex.: quando alguém ligar para o seu atendimento será <code class="prettyprint">inbound</code> ou quando for uma chamada de alguns dos discadores será <code class="prettyprint">outbound</code>
-started_at             | DateTime| Data e hora do início da chamada, no formato <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a>, com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: <code class="prettyprint">&quot;2015-05-07T16:26:05.000-03:00&quot;</code>.
-status                 | String  | Status da chamada no momento do evento. Os status possíveis são: <code class="prettyprint">newcall</code>, <code class="prettyprint">in_progress</code>, <code class="prettyprint">abandoned</code>, <code class="prettyprint">answered</code>, <code class="prettyprint">blocked</code>, <code class="prettyprint">handled</code> e <code class="prettyprint">missed</code>.
-status_details         | String  | Complemento do status. Pode vir com o nome do atendente que atendeu a ligação, uma mensagem personalizada ou com a mensagem <code class="prettyprint">&quot;Desligada&quot;</code>.
-block_reason           | String  | Motivo da chamada ter sido bloqueada
-my_status_code         | String  | Código do Meu Status aplicado na chamada
-my_status_name         | String  | Nome do Meu Status aplicado na chamada
-my_status_complement_1 | String  | Complemento 1 do Meu Status aplicado na chamada
-my_status_complement_2 | String  | Complemento 2 do Meu Status aplicado na chamada
-my_status_info_1       | String  | Info 1 do Meu Status aplicado na chamada
-my_status_info_2       | String  | Info 2 do Meu Status aplicado na chamada
-my_status_info_3       | String  | Info 3 do Meu Status aplicado na chamada
-my_kpi                 | Array  | Nomes das tags aplicadas na chamada
-result_leg_a           | String  | Resultado da perna A (<code class="prettyprint">&quot;answered&quot;</code>, <code class="prettyprint">&quot;error&quot;</code>, <code class="prettyprint">&quot;others&quot;</code>, <code class="prettyprint">&quot;busy_or_unavailable&quot;</code>, <code class="prettyprint">&quot;answered_machine&quot;</code>, <code class="prettyprint">&quot;not_answered&quot;</code> ou <code class="prettyprint">&quot;absent&quot;</code>)
-result_leg_b           | String  | Resultado da perna B (<code class="prettyprint">&quot;answered&quot;</code>, <code class="prettyprint">&quot;error&quot;</code>, <code class="prettyprint">&quot;others&quot;</code>, <code class="prettyprint">&quot;busy_or_unavailable&quot;</code>, <code class="prettyprint">&quot;canceled&quot;</code>, <code class="prettyprint">&quot;answered_machine&quot;</code>, <code class="prettyprint">&quot;not_answered&quot;</code> ou <code class="prettyprint">&quot;absent&quot;</code>)
-leg_a_type             | String  | Tipo de perna A (<code class="prettyprint">&quot;attendant&quot;</code> ou <code class="prettyprint">&quot;client&quot;</code>)
-attendant_name         | String  | Nome do Atendente que atendeu a ligação
-attendant_email        | String  | Email do Atendente que atendeu a ligação
-attendant_number       | String  | Telefone do Atendente que atendeu a ligação
-attendant_extension_number | String  | Ramal do Atendente que atendeu a ligação
-voicemail              | Boolean  | Se tem caixa postal
-voicemail              | Boolean  | Se tem caixa postal
-business_hours         | String  | Identifica se a chamada ocorreu dentro ou fora do horário de atendimento configurado. Os valores possíveis são: <code class="prettyprint">worktime</code> e <code class="prettyprint">out_of_worktime</code>.
-business_hours_complement | String  | Complemento do horário, pode vir com o nome do feriado em que a chamada foi efetuada 
-inbound_duration       | Integer | Duração real da chamada (em segundos), sem arredondamento.
-ura_duration           | Integer | Duração na ura (em segundos), sem arredondamento.
-dial_duration          | Integer | Tempo de espera na fila (em segundos), sem arredondamento.
-ring_duration_a        | Integer | Tempo que levou a pessoa atender a ligação da perna A (em segundos), sem arredondamento
-ring_duration_b        | Integer | Tempo que levou a pessoa atender a ligação da perna B (em segundos), sem arredondamento
-ring_duration_c        | Integer | Tempo que levou a pessoa atender a ligação da perna C (em segundos), sem arredondamento
-selected_options       | Array   | Opções do menu digitadas por quem ligou, na ordem em que forem digitadas. Se o atendimento for automático, ou seja, sem menu de opções, o valor retornado será sempre <code class="prettyprint">&quot;1&quot;</code>. Dependendo da configuração do atendimento, é possível digitar mais de uma opção. Exemplo: <code class="prettyprint">[&quot;1&quot;, &quot;3&quot;]</code>.
-kind                   | String  | Tipo da configuração usada na ligação
-call_tags              | Array   | Classificações da chamada registradas por quem atendeu a ligação. Exemplo: <code class="prettyprint">[{&quot;code&quot;: &quot;70&quot;, &quot;description&quot;: &quot;Lead&quot;}]</code>.
-call_tags &#65515; code       | String  | Código que o atendente digitou para efetuar a classificação.
-call_tags &#65515; description| String  | Descrição referente ao código digitado na classificação.
-audio_url              | String  | Link para o arquivo com a gravação da conversa ou áudio da caixa postal. Exemplo: <code class="prettyprint">&quot;https://app.atendimento.algardigital.com.br/public/audios/98b2ec022a7f051a84e65b&quot;</code>.
-zendesk_ticket_id      | String  | Código identificador do ticket do Zendesk associado à chamada.
-customer_info      | String  | Informação por chamada enviada por sua API na requisição de uma chamada sainte, na resposta de uma pré-chamada ou na resposta de uma interação. Caso não tenha sido enviada essa informação, o campo ficará em branco. Se durante uma chamada forem enviados diferentes customer_info, ficará sempre armazenado a última string.
-outbound_calls         | Array   | Informações referente aos reencaminhamentos da chamada (pode haver mais de um). Só serão apresentados os reencaminhamentos que forem atendidos.
-outbound_calls &#65515; started_at   | DateTime | Data e hora do reencaminhamento, no formato <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a>, com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: <code class="prettyprint">&quot;2015-05-07T17:26:05.000-03:00&quot;</code>.
-outbound_calls &#65515; phone_number | String   | Número do telefone que atendeu o reencaminhamento. Exemplo: <code class="prettyprint">&quot;5511999999999&quot;</code>.
-outbound_calls &#65515; name         | String   | Nome do atendente que atendeu o reencaminhamento. Exemplo: <code class="prettyprint">&quot;João&quot;</code>.
-outbound_calls &#65515; email        | String  | E-mail do atendente que atendeu o reencaminhamento. Exemplo: <code class="prettyprint">joao@suaempresa.com</code>.
-outbound_calls &#65515; extension    | Integer  | Ramal do atendente que atendeu o reencaminhamento. Exemplo: <code class="prettyprint">22</code>.
-outbound_calls &#65515; duration     | Integer  | Duração real do reencaminhamento (em segundos).
-outbound_calls &#65515; option       | Integer    | opção em que a chamada foi atendida pelo Atendente. Exemple: <code class="prettyprint">6</code>.
-outbound_calls &#65515; queue_id     | Integer  | Código interno da fila de atendimento que atendeu a chamada, sendo: de <code class="prettyprint">0</code> a <code class="prettyprint">9</code> opções diretas do menu, de <code class="prettyprint">21</code> a <code class="prettyprint">99</code> ramais, <code class="prettyprint">1000</code> fora de horário e outros números de opções complementares.
-interactions         | Array   | Informações referente às interações da chamada.
-interactions &#65515; digits       | Integer    | Número digitado na interação por quem ligou para seu atendimento.
-interactions &#65515; selected_option | Integer | Opção de interação do menu digitada por quem ligou.
-interactions &#65515; validation_status | String | Status de validação da interação. Valores possíveis: <code class="prettyprint">&quot;ok&quot;</code> ou <code class="prettyprint">&quot;error&quot;</code>.
-post_attendances     | Array   | Informações sobre as pesquisas de pós atendimento
-word_spottings       | Array   | Informações referente ao monitoramento de termos.
-word_spottings &#65515; word         | String  | Termo identificado durante a chamada. Exemplo: <code class="prettyprint">&quot;procon&quot;</code>.
-word_spottings &#65515; word_group   | String  | Grupo ao qual o termo pertence. Exemplo: <code class="prettyprint">&quot;reclamação&quot;</code>.
-word_spottings &#65515; score        | Integer | Porcentagem de certeza de que o termo identificado na chamada é realmente o que foi configurado. Exemplo: 85.
-word_spottings &#65515; occurred_at  | Time    | Tempo da chamada em que o termo foi identificado. Sendo uma representação de tempo, a data virá sempre &ldquo;zerada&rdquo;, e deverá ser desconsiderada. Exemplo: <code class="prettyprint">&quot;1900-01-01T00:01:48.159+00:00&quot;</code> se refere ao tempo <code class="prettyprint">1m, 48s e 159ms</code> da chamada.</p>
 
       </div>
       <div class="dark-box">

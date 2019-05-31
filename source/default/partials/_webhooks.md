@@ -191,6 +191,9 @@ call.*               | Todos os eventos do recurso `call` (chamada), inclusive o
     "direction": "inbound",
     "kind":"default",
     "customer_info": "your_info",
+    "dialer_info_1": "dialer info 1",
+    "dialer_info_2": "dialer info 2",
+    "dialer_info_3": "dialer info 3",
     "selected_options": [
       "1",
       "3",
@@ -310,7 +313,7 @@ number_info2           | String  | Valor definido para o número que a chamada f
 number_info3           | String  | Valor definido para o número que a chamada foi realizada, os valores para cada número podem ser configurados clicando em "Opções de conta" e depois no menu "Números", no campo "Info 3"
 direction              | String  | Direção da chamada: `inbound` ou `outbound`. Ex.: quando alguém ligar para o seu atendimento será `inbound` ou quando for uma chamada de alguns dos discadores será `outbound`
 started_at             | DateTime| Data e hora do início da chamada, no formato [ISO8601][iso8601], com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2015-05-07T16:26:05.000-03:00"`.
-status                 | String  | Status da chamada no momento do evento. Os status possíveis são: `newcall`, `in_progress`, `abandoned`, `answered`, `blocked`, `handled` e `missed`.
+status                 | String  | Status da chamada no momento do evento. Os status possíveis são: `newcall`, `in_progress`, `abandoned`, `answered`, `blocked`, `handled`, `missed` e `failed`.
 status_details         | String  | Complemento do status. Pode vir com o nome do atendente que atendeu a ligação, uma mensagem personalizada ou com a mensagem `"Desligada"`.
 block_reason           | String  | Motivo da chamada ter sido bloqueada
 my_status_code         | String  | Código do Meu Status aplicado na chamada
@@ -349,6 +352,9 @@ call_tags &#65515; description| String  | Descrição referente ao código digit
 audio_url              | String  | Link para o arquivo com a gravação da conversa ou áudio da caixa postal. Exemplo: `"https://app.atendesimples.com/public/audios/98b2ec022a7f051a84e65b"`.
 zendesk_ticket_id      | String  | Código identificador do ticket do Zendesk associado à chamada.
 customer_info      | String  | Informação por chamada enviada por sua API na requisição de uma chamada sainte, na resposta de uma pré-chamada ou na resposta de uma interação. Caso não tenha sido enviada essa informação, o campo ficará em branco. Se durante uma chamada forem enviados diferentes customer_info, ficará sempre armazenado a última string.
+dialer_info_1      |String| Info 1 definida na ficha do discador por fila.
+dialer_info_2      |String| Info 2 definida na ficha do discador por fila.
+dialer_info_3      |String| Info 3 definida na ficha do discador por fila.
 outbound_calls         | Array   | Informações referente aos reencaminhamentos da chamada (pode haver mais de um). Só serão apresentados os reencaminhamentos que forem atendidos.
 outbound_calls &#65515; started_at   | DateTime | Data e hora do reencaminhamento, no formato [ISO8601][iso8601], com fuso horário -0300 (referente ao do Brasil, GMT-3). Exemplo: `"2015-05-07T17:26:05.000-03:00"`.
 outbound_calls &#65515; phone_number | String   | Número do telefone que atendeu o reencaminhamento. Exemplo: `"5511999999999"`.

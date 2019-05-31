@@ -311,6 +311,9 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
     </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inbound"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"kind"</span><span class="p">:</span><span class="s2">"default"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"customer_info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_info"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dialer_info_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dialer info 1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dialer_info_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dialer info 2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dialer_info_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dialer info 3"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"selected_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
@@ -534,7 +537,7 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <tr>
 <td>status</td>
 <td>String</td>
-<td>Status da chamada no momento do evento. Os status possíveis são: <code class="prettyprint">newcall</code>, <code class="prettyprint">in_progress</code>, <code class="prettyprint">abandoned</code>, <code class="prettyprint">answered</code>, <code class="prettyprint">blocked</code>, <code class="prettyprint">handled</code> e <code class="prettyprint">missed</code>.</td>
+<td>Status da chamada no momento do evento. Os status possíveis são: <code class="prettyprint">newcall</code>, <code class="prettyprint">in_progress</code>, <code class="prettyprint">abandoned</code>, <code class="prettyprint">answered</code>, <code class="prettyprint">blocked</code>, <code class="prettyprint">handled</code>, <code class="prettyprint">missed</code> e <code class="prettyprint">failed</code>.</td>
 </tr>
 <tr>
 <td>status_details</td>
@@ -725,6 +728,21 @@ c7fb37d21fc3a868e346eca1d89af5ce15f83317
 <td>customer_info</td>
 <td>String</td>
 <td>Informação por chamada enviada por sua API na requisição de uma chamada sainte, na resposta de uma pré-chamada ou na resposta de uma interação. Caso não tenha sido enviada essa informação, o campo ficará em branco. Se durante uma chamada forem enviados diferentes customer_info, ficará sempre armazenado a última string.</td>
+</tr>
+<tr>
+<td>dialer_info_1</td>
+<td>String</td>
+<td>Info 1 definida na ficha do discador por fila.</td>
+</tr>
+<tr>
+<td>dialer_info_2</td>
+<td>String</td>
+<td>Info 2 definida na ficha do discador por fila.</td>
+</tr>
+<tr>
+<td>dialer_info_3</td>
+<td>String</td>
+<td>Info 3 definida na ficha do discador por fila.</td>
 </tr>
 <tr>
 <td>outbound_calls</td>
